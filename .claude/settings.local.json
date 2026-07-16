@@ -1,0 +1,31 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl -s http://localhost:8743/css/style.css)",
+      "Bash(python3 -)",
+      "Bash(pkill -f \"http.server 8743\")",
+      "Bash(npm -v)",
+      "Bash(npm config *)",
+      "Bash(curl -sI https://registry.npmjs.org/next)",
+      "Bash(npm view *)",
+      "Bash(python3 -c \"import json,sys; v=json.load\\(sys.stdin\\); print\\([x for x in v if x.startswith\\('15.'\\)][-10:]\\)\")",
+      "Bash(python3 -c \"import json,sys; v=json.load\\(sys.stdin\\); print\\([x for x in v if x.startswith\\('5.'\\)][-5:]\\)\")",
+      "Bash(python3 -c \"import json,sys; v=json.load\\(sys.stdin\\); print\\([x for x in v if x.startswith\\('15.'\\)][-5:]\\)\")",
+      "Bash(python3 -c \"import json,sys; v=json.load\\(sys.stdin\\); print\\([x for x in v if x.startswith\\('20.'\\)][-3:]\\)\")",
+      "Bash(python3 -c \"import json,sys; v=json.load\\(sys.stdin\\); print\\([x for x in v if x.startswith\\('15.'\\)][-3:]\\)\")",
+      "Bash(python3 -c \"import json,sys; v=json.load\\(sys.stdin\\); print\\([x for x in v if x.startswith\\('9.'\\)][-3:]\\)\")",
+      "Bash(git init *)",
+      "Bash(mkdir -p \"/Users/zaman/Documents/products/src/app/\\(site\\)\" *)",
+      "Bash(mkdir -p \"/Users/zaman/Documents/products/src/app/\\(site\\)/products/[slug]\")",
+      "Bash(npm install *)",
+      "Bash(python3 -c ' *)",
+      "Bash(npx tsc *)",
+      "Bash(npm run *)",
+      "Bash(sed -i '' '/\\\\/\\\\/ eslint-disable-next-line no-console/d' src/sanity/env.ts src/app/actions.ts)",
+      "Bash(sed -i '' '/\\\\/\\\\/ eslint-disable-next-line react\\\\/no-danger/d' src/lib/jsonld.tsx)",
+      "Bash(pkill -f \"next dev\")",
+      "Bash(curl -sI http://localhost:3000)",
+      "Bash(pkill -f \"http.server\")"
+    ]
+  }
+}

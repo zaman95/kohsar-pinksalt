@@ -1,0 +1,76 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-manrope), system-ui, -apple-system, sans-serif;
+  --font-heading: var(--font-archivo), system-ui, -apple-system, sans-serif;
+
+  --color-ink: #1f2937;
+  --color-ink-2: #161e29;
+  --color-bg: #faf9f7;
+  --color-pink: #e9b7a5;
+  --color-pink-dark: #8f5f4b;
+  --color-brown: #b07a63;
+  --color-brown-light: #a88c7d;
+  --color-brown-lighter: #8a7a6d;
+  --color-brown-mid: #c49483;
+  --color-alt: #f3ece4;
+  --color-muted: #5b6472;
+  --color-muted-2: #6b7280;
+  --color-border: #e9e3db;
+  --color-border-2: #ece5dd;
+  --color-border-3: #ece3d9;
+  --color-border-4: #e6dcd1;
+  --color-border-5: #ded4c8;
+  --color-slot: #efe7e0;
+  --color-card: #fcfaf7;
+  --color-footer-muted: #8b95a4;
+  --color-footer-line: #6b7787;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-bg text-ink antialiased;
+    font-family: var(--font-sans);
+    line-height: 1.55;
+  }
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-heading);
+  }
+  ::selection {
+    background: var(--color-pink);
+    color: var(--color-ink);
+  }
+}
+
+@keyframes float-up {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-float-up {
+  animation: float-up 0.8s ease both;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.5s ease both;
+}
