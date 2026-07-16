@@ -29,7 +29,7 @@ export default async function ContactPage() {
         <div className="mt-10 grid grid-cols-1 items-start gap-10 lg:grid-cols-2">
           <div>
             <div className="relative h-[280px] overflow-hidden rounded-[18px]">
-              <SanityImage image={undefined} alt={`Map — ${settings.factoryAddress}`} />
+              <SanityImage image={undefined} alt={`Map — ${settings.factoryAddress}`} sizes="(min-width: 1024px) 50vw, 100vw" />
             </div>
             <div className="mt-[22px] flex flex-col gap-4">
               {details.map((d) => (

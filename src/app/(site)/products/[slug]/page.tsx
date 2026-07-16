@@ -71,7 +71,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
       <Breadcrumb items={[{ name: "Products", href: "/products" }, { name: product.name }]} />
 
       <div className="grid grid-cols-1 gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14">
-        <ProductGallery images={product.images ?? []} name={product.name} tag={product.tag} />
+        <ProductGallery images={product.images ?? []} name={product.name} slug={product.slug} tag={product.tag} />
 
         <div>
           <div className="text-[13px] font-semibold tracking-wide text-brown-light">{product.category?.name}</div>

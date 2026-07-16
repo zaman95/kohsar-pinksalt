@@ -10,26 +10,24 @@ type SanityImageProps = {
   sizes?: string;
   priority?: boolean;
   fill?: boolean;
+  /** Local /public fallback (e.g. from lib/stockImages.ts) used until a real Sanity image is uploaded. */
+  fallbackSrc?: string;
 };
 
 /**
- * Renders a Sanity-hosted image via next/image when one is set, otherwise
- * falls back to a branded gradient placeholder — lets pages ship today and
- * pick up real photography the moment it's added in Studio.
+ * Renders a Sanity-hosted image via next/image when one is set. Otherwise
+ * falls back to a local stock photo if one is provided, or a branded
+ * gradient placeholder as a last resort — lets pages ship today and pick up
+ * real photography the moment it's added in Studio.
  */
-export function SanityImage({ image, alt, className, sizes = "100vw", priority, fill = true }: SanityImageProps) {
+export function SanityImage({ image, alt, className, sizes = "100vw", priority, fill = true, fallbackSrc }: SanityImageProps) {
   if (image?.asset) {
     const url = urlFor(image).width(1600).fit("max").auto("format").url();
-    return (
-      <Image
-        src={url}
-        alt={alt}
-        fill={fill}
-        sizes={sizes}
-        priority={priority}
-        className={cn("object-cover", className)}
-      />
-    );
+    return <Image src={url} alt={alt} fill={fill} sizes={sizes} priority={priority} className={cn("object-cover", className)} />;
+  }
+
+  if (fallbackSrc) {
+    return <Image src={fallbackSrc} alt={alt} fill={fill} sizes={sizes} priority={priority} className={cn("object-cover", className)} />;
   }
 
   return (

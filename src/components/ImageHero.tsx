@@ -8,16 +8,18 @@ export function ImageHero({
   image,
   imageAlt,
   height = "h-[340px]",
+  fallbackSrc,
 }: {
   crumbs: Crumb[];
   title: string;
   image?: SanityImageRef | null;
   imageAlt: string;
   height?: string;
+  fallbackSrc?: string;
 }) {
   return (
     <section className={`relative overflow-hidden ${height}`}>
-      <SanityImage image={image} alt={imageAlt} />
+      <SanityImage image={image} alt={imageAlt} fallbackSrc={fallbackSrc} />
       <div className="absolute inset-0 bg-linear-to-r from-ink/90 via-ink/50 to-ink/20" />
       <div className="relative z-10 mx-auto flex h-full max-w-[1240px] flex-col justify-center px-[18px] sm:px-8">
         <Breadcrumb items={crumbs} light />

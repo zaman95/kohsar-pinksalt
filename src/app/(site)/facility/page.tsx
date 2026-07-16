@@ -3,6 +3,16 @@ import { PageHero } from "@/components/PageHero";
 import { SanityImage } from "@/components/SanityImage";
 import { LinkButton } from "@/components/ui/Button";
 import { FACILITY_AREAS, FACILITY_STATS } from "@/lib/constants";
+import { STOCK } from "@/lib/stockImages";
+
+const FACILITY_STOCK: Record<string, string> = {
+  "Mining & Sorting": STOCK.mining,
+  Handcrafting: STOCK.workshop,
+  "Edible Processing": STOCK.edibleSalt,
+  "Quality Lab": STOCK.qualityLab,
+  "Export Packing": STOCK.exportPacking,
+  Warehouse: STOCK.warehouse,
+};
 
 export const metadata: Metadata = {
   title: "Manufacturing Facility",
@@ -36,7 +46,12 @@ export default function FacilityPage() {
           {FACILITY_AREAS.map((a) => (
             <div key={a.title}>
               <div className="relative h-[210px] overflow-hidden rounded-2xl">
-                <SanityImage image={undefined} alt={a.ph} />
+                <SanityImage
+                  image={undefined}
+                  alt={a.ph}
+                  fallbackSrc={FACILITY_STOCK[a.title]}
+                  sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                />
               </div>
               <div className="mt-3 font-bold">{a.title}</div>
             </div>

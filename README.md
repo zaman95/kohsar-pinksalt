@@ -42,7 +42,7 @@ cp .env.local.example .env.local
 | `NEXT_PUBLIC_CLARITY_PROJECT_ID` | Microsoft Clarity | clarity.microsoft.com → project settings |
 | `NEXT_PUBLIC_GSC_VERIFICATION` | Search Console | Search Console → Settings → Ownership verification → HTML tag (copy just the `content` value) |
 
-Without Sanity configured the site still builds and runs — every page falls back to an empty state instead of crashing. Without `RESEND_API_KEY` set, form submissions are logged to the server console instead of emailed, so you can test the full form flow before wiring up Resend.
+Without Sanity configured the site still builds and runs with full real content — every query in `src/lib/queries.ts` falls back to the local starter content in `src/lib/fallbackContent.ts` (same catalog/blog/FAQs/certs/testimonials as the original design) instead of shipping an empty page. The moment Sanity has real documents, those take over automatically. Without `RESEND_API_KEY` set, form submissions are logged to the server console instead of emailed, so you can test the full form flow before wiring up Resend.
 
 ## 3. Set up Sanity
 
@@ -90,16 +90,23 @@ src/
   components/           Header, Footer, cards, forms, SanityImage, ui/Button
   lib/
     constants.ts         static brand content (nav, process steps, etc.)
-    queries.ts            typed GROQ fetchers, fail safe to empty data
+    queries.ts            typed GROQ fetchers, fall back to fallbackContent.ts
+    fallbackContent.ts      local starter catalog/blog/FAQs/certs/testimonials
+    stockImages.ts          slug → local stock photo map (public/images/stock)
     validations.ts         Zod schemas shared by forms + Server Actions
     jsonld.tsx              structured-data builders
   sanity/
     schemaTypes/       category, product, blogPost, faq, certification, testimonial, siteSettings
     client.ts, image.ts, structure.ts
 scripts/seed.ts          one-time content migration into Sanity
+public/images/stock/      free-licensed (Unsplash) placeholder photography
 ```
 
-Content split: product catalog, blog, FAQs, certifications and testimonials live in Sanity (things a non-developer should be able to edit). Structural/rarely-changing copy (nav labels, process steps, Incoterms, container-loading guide, etc.) stays in `src/lib/constants.ts` — editing that requires a code change and redeploy.
+Content split: product catalog, blog, FAQs, certifications and testimonials live in Sanity (things a non-developer should be able to edit) — until it's configured, `fallbackContent.ts` serves the same content locally. Structural/rarely-changing copy (nav labels, process steps, Incoterms, container-loading guide, etc.) stays in `src/lib/constants.ts` — editing that requires a code change and redeploy.
+
+### Images
+
+Every image slot resolves in this order: **real Sanity image → local stock photo (`stockImages.ts`) → branded gradient placeholder**. The stock photos are free-license (Unsplash, no attribution required) generic photography, not real product photos — replace them in Studio once you have your own. Leadership portraits, the contact page map, and the catalog PDF cover are intentionally left as placeholders since a stock photo would misrepresent a real person or a real location.
 
 ## 7. Deploy to Vercel
 

@@ -3,6 +3,8 @@ import Link from "next/link";
 import { PageHero } from "@/components/PageHero";
 import { SanityImage } from "@/components/SanityImage";
 import { getPosts } from "@/lib/queries";
+import { BLOG_STOCK } from "@/lib/stockImages";
+import { formatMonthYear } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: "Blog — Import Guides & Wholesale Insights",
@@ -26,11 +28,16 @@ export default async function BlogPage() {
               className="block overflow-hidden rounded-[18px] border border-border-3 bg-white transition-transform duration-300 hover:-translate-y-1.5"
             >
               <div className="relative h-[180px] bg-slot">
-                <SanityImage image={p.coverImage} alt={p.title} />
+                <SanityImage
+                  image={p.coverImage}
+                  alt={p.title}
+                  fallbackSrc={BLOG_STOCK[p.slug]}
+                  sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                />
               </div>
               <div className="p-5.5">
                 <div className="text-xs font-bold tracking-wide text-brown-light">
-                  {p.category} &middot; {new Date(p.publishedAt).toLocaleDateString("en-US", { month: "short", year: "numeric" })}
+                  {p.category} &middot; {formatMonthYear(p.publishedAt)}
                 </div>
                 <div className="mt-2 font-heading text-lg leading-snug font-bold">{p.title}</div>
                 <div className="mt-2.5 text-sm text-muted-2">{p.excerpt}</div>

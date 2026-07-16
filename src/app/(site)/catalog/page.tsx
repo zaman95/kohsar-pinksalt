@@ -21,7 +21,7 @@ export default async function CatalogPage() {
           Full specs, MOQs and packaging options across all nine categories — updated quarterly.
         </p>
         <div className="relative mx-auto mt-9 h-[290px] w-[220px] overflow-hidden rounded-2xl shadow-[0_30px_60px_-30px_rgba(31,41,55,0.4)]">
-          <SanityImage image={undefined} alt="Catalog cover artwork" />
+          <SanityImage image={undefined} alt="Catalog cover artwork" sizes="220px" />
         </div>
         <button
           type="button"

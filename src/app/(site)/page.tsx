@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { CategoryCard } from "@/components/CategoryCard";
 import { ProductCard } from "@/components/ProductCard";
 import { SanityImage } from "@/components/SanityImage";
+import { STOCK } from "@/lib/stockImages";
 import { SectionHeading } from "@/components/SectionHeading";
 import { LinkButton } from "@/components/ui/Button";
 import { JsonLdScript, organizationJsonLd } from "@/lib/jsonld";
@@ -30,7 +31,7 @@ export default async function HomePage() {
       {/* HERO */}
       <section className="relative flex min-h-[560px] items-center overflow-hidden bg-ink">
         <div className="absolute inset-0">
-          <SanityImage image={undefined} alt="Salt lamp glowing in a warm interior" priority />
+          <SanityImage image={undefined} alt="Salt lamp glowing in a warm interior" priority fallbackSrc={STOCK.heroLampInterior} />
           <div className="absolute inset-0 bg-linear-to-r from-ink/90 via-ink/60 to-ink/20" />
         </div>
         <div className="relative z-10 mx-auto w-full max-w-[1240px] px-[18px] py-16 sm:px-8">
@@ -161,7 +162,12 @@ export default async function HomePage() {
       <section className="mx-auto max-w-[1240px] px-[18px] py-16 sm:px-8 lg:py-[110px]">
         <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-14">
           <div className="relative h-[300px] overflow-hidden rounded-[22px] lg:h-[420px]">
-            <SanityImage image={undefined} alt="Custom branded packaging" />
+            <SanityImage
+              image={undefined}
+              alt="Custom branded packaging"
+              fallbackSrc={STOCK.packaging}
+              sizes="(min-width: 1024px) 50vw, 100vw"
+            />
           </div>
           <div>
             <span className="text-xs font-bold tracking-[0.24em] text-brown uppercase">OEM &amp; Private Label</span>

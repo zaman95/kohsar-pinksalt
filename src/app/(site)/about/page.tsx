@@ -3,6 +3,7 @@ import { ImageHero } from "@/components/ImageHero";
 import { SanityImage } from "@/components/SanityImage";
 import { LinkButton } from "@/components/ui/Button";
 import { COMPANY, LEADERSHIP, STATS } from "@/lib/constants";
+import { STOCK } from "@/lib/stockImages";
 
 export const metadata: Metadata = {
   title: "About Us",
@@ -18,6 +19,7 @@ export default function AboutPage() {
         title="Two decades exporting the salt of the Himalayas"
         imageAlt="Founders / workshop portrait"
         height="h-[380px]"
+        fallbackSrc={STOCK.workshop}
       />
 
       <section className="mx-auto max-w-[1240px] px-[18px] py-16 sm:px-8 lg:py-20">
@@ -67,7 +69,7 @@ export default function AboutPage() {
             {LEADERSHIP.map((l) => (
               <div key={l.name}>
                 <div className="relative h-[200px] overflow-hidden rounded-2xl">
-                  <SanityImage image={undefined} alt={`Portrait — ${l.role}`} />
+                  <SanityImage image={undefined} alt={`Portrait — ${l.role}`} sizes="(min-width: 640px) 33vw, 100vw" />
                 </div>
                 <div className="mt-3 font-bold">{l.name}</div>
                 <div className="text-[13px] text-brown-lighter">{l.role}</div>

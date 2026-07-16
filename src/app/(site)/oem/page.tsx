@@ -3,6 +3,7 @@ import { ImageHero } from "@/components/ImageHero";
 import { SanityImage } from "@/components/SanityImage";
 import { LinkButton } from "@/components/ui/Button";
 import { OEM_PACKAGING, WHOLESALE_STEPS } from "@/lib/constants";
+import { STOCK } from "@/lib/stockImages";
 
 export const metadata: Metadata = {
   title: "OEM / Private Label",
@@ -18,6 +19,7 @@ export default function OemPage() {
         title="Your brand, manufactured at source"
         imageAlt="Branded retail packaging lineup"
         height="h-[340px]"
+        fallbackSrc={STOCK.packaging}
       />
 
       <section className="mx-auto max-w-[1240px] px-[18px] py-14 pb-8 sm:px-8 lg:pt-20">
@@ -38,7 +40,12 @@ export default function OemPage() {
           {OEM_PACKAGING.map((p) => (
             <div key={p.title}>
               <div className="relative h-[190px] overflow-hidden rounded-2xl">
-                <SanityImage image={undefined} alt={p.ph} />
+                <SanityImage
+                  image={undefined}
+                  alt={p.ph}
+                  fallbackSrc={p.title === "Brown / Bulk Carton" ? STOCK.packaging : undefined}
+                  sizes="(min-width: 640px) 33vw, 100vw"
+                />
               </div>
               <div className="mt-3 font-bold">{p.title}</div>
               <div className="mt-1 text-[13.5px] text-muted-2">{p.desc}</div>
