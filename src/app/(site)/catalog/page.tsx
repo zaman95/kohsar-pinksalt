@@ -18,7 +18,7 @@ export default async function CatalogPage() {
         <Breadcrumb items={[{ name: "Home", href: "/" }, { name: "Catalog Download" }]} />
         <h1 className="font-heading text-[30px] font-extrabold tracking-tight sm:text-[38px]">Download our full wholesale catalog</h1>
         <p className="mx-auto mt-3.5 max-w-[520px] text-base text-muted">
-          Full specs, MOQs and packaging options across all nine categories — updated quarterly.
+          Full specs, MOQs and packaging options across all ten categories — updated quarterly.
         </p>
         <div className="relative mx-auto mt-9 h-[290px] w-[220px] overflow-hidden rounded-2xl shadow-[0_30px_60px_-30px_rgba(31,41,55,0.4)]">
           <SanityImage image={undefined} alt="Catalog cover artwork" sizes="220px" />

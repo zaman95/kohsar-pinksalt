@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 export const metadata: Metadata = {
   title: "Product Catalog",
   description:
-    "Wholesale Himalayan pink salt across nine categories — salt lamps, tiles, edible salt, bath salt and more. Every product available for private label and bulk container orders.",
+    "Wholesale Himalayan pink salt across ten categories — salt lamps, tiles, kitchenware, edible salt, bath salt and more. Every product available for private label and bulk container orders.",
   alternates: { canonical: "/products" },
 };
 
@@ -29,7 +29,7 @@ export default async function ProductsPage({
           <Breadcrumb items={[{ name: "Products" }]} light />
           <h1 className="font-heading text-[32px] font-extrabold tracking-tight text-bg sm:text-[46px]">Product Catalog</h1>
           <p className="mt-3.5 max-w-[560px] text-[17px] text-[#C6CFDA]">
-            Wholesale Himalayan pink salt across nine categories. Every product available for private label and bulk container
+            Wholesale Himalayan pink salt across ten categories. Every product available for private label and bulk container
             orders.
           </p>
         </div>

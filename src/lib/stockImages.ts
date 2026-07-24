@@ -24,16 +24,30 @@ export const STOCK = {
   containerShip: "/images/stock/container-ship.jpg",
 } as const;
 
+export const CATEGORY = {
+  lampNatural: "/images/category/lamp-natural.jpg",
+  lampGeometric: "/images/category/lamp-geometric.jpg",
+  lampBasket: "/images/category/lamp-basket.jpg",
+  lampUsbMini: "/images/category/lamp-usb-mini.jpg",
+  candleHolder: "/images/category/candle-holder.jpg",
+  saltTile: "/images/category/salt-tile.jpg",
+  edibleSalt: "/images/category/edible-salt.jpg",
+  kitchenware: "/images/category/kitchenware.jpg",
+  bathSalt: "/images/category/bath-salt.jpg",
+  lickBlock: "/images/category/lick-block.jpg",
+} as const;
+
 export const CATEGORY_STOCK: Record<string, string> = {
-  "lamp-natural": STOCK.lampNatural,
-  "lamp-crafted": STOCK.lampGeometric,
-  "lamp-basket": STOCK.lampBasket,
-  "lamp-usb": STOCK.lampUsbMini,
-  "holder-tealight": STOCK.candleHolder,
-  "tile-cooking": STOCK.saltTile,
-  "edible-fine": STOCK.edibleSalt,
-  "bath-crystal": STOCK.bathSalt,
-  "lick-block": STOCK.lickBlock,
+  "lamp-natural": CATEGORY.lampNatural,
+  "lamp-crafted": CATEGORY.lampGeometric,
+  "lamp-basket": CATEGORY.lampBasket,
+  "lamp-usb": CATEGORY.lampUsbMini,
+  "holder-tealight": CATEGORY.candleHolder,
+  "tile-cooking": CATEGORY.saltTile,
+  "edible-fine": CATEGORY.edibleSalt,
+  "kitchenware": CATEGORY.kitchenware,
+  "bath-crystal": CATEGORY.bathSalt,
+  "lick-block": CATEGORY.lickBlock,
 };
 
 export const PRODUCT_STOCK: Record<string, string> = CATEGORY_STOCK;

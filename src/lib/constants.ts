@@ -3,7 +3,7 @@ export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:30
 export const COMPANY = {
   name: "Kohsar Saltworks",
   legalName: "Kohsar Saltworks (Pvt) Ltd.",
-  founded: 2004,
+  founded: 2022,
   tagline: "Manufacturer · Exporter · OEM Partner",
   email: "export@kohsarsaltworks.com",
   phone: "+92 300 000 0000",
@@ -43,11 +43,11 @@ export const FOOTER_RESOURCES: NavItem[] = [
   { label: "FAQ", href: "/faq" },
 ];
 
-export const REGIONS = ["USA", "Germany", "UK", "UAE", "Australia", "Canada", "Japan", "France"];
+export const REGIONS = ["USA", "UK", "China", "Turkiye", "Spain", "UAE", "Netherlands", "Germany", "Australia", "Japan"];
 
 export const STATS = [
-  { value: "20+", label: "Years exporting" },
-  { value: "80+", label: "Countries served" },
+  { value: "4+", label: "Years exporting" },
+  { value: "20+", label: "Countries served" },
   { value: "6,000T", label: "Annual capacity" },
   { value: "24h", label: "Quote turnaround" },
 ];
@@ -61,7 +61,7 @@ export const PROCESS_STEPS = [
 
 export const OEM_POINTS = ["Custom logo & engraving", "Retail-ready gift boxes", "Branded cartons & inserts", "Compliance labelling"];
 
-export const INCOTERMS = ["FOB", "CIF", "CFR", "DDP", "EXW"];
+export const INCOTERMS = ["FOB", "CIF", "CFR"];
 
 export const SHIP_CARDS = [
   { k: "SEA FREIGHT", v: "FCL / LCL", d: "20ft & 40ft from Karachi Port" },

@@ -12,7 +12,7 @@ import { getCategories, getCertifications, getFeaturedProducts, getTestimonials 
 export const metadata: Metadata = {
   title: "Wholesale Himalayan Pink Salt Manufacturer & Exporter",
   description:
-    "Bulk wholesale, private label, and custom manufacturing of Himalayan pink salt products for importers, distributors and brands in 80+ countries. FDA & ISO certified, container-ready.",
+    "Bulk wholesale, private label, and custom manufacturing of Himalayan pink salt products for importers, distributors and brands in 20+ countries. FDA & ISO certified, container-ready.",
   alternates: { canonical: "/" },
 };
 
@@ -41,7 +41,7 @@ export default async function HomePage() {
               Premium Himalayan Pink Salt, straight from the source in Pakistan.
             </h1>
             <p className="mt-[22px] max-w-[520px] text-lg text-[#E7DDD5]">
-              Bulk wholesale, private label, and custom manufacturing for importers, distributors and brands in 80+ countries. FDA
+              Bulk wholesale, private label, and custom manufacturing for importers, distributors and brands worldwide. FDA
               &amp; ISO certified. Container-ready.
             </p>
             <div className="mt-[34px] flex flex-wrap gap-3.5">
@@ -59,7 +59,7 @@ export default async function HomePage() {
       {/* TRUST STRIP */}
       <section className="bg-ink px-[18px] py-6 sm:px-8">
         <div className="mx-auto flex max-w-[1240px] flex-wrap items-center justify-between gap-6">
-          <span className="text-xs font-bold tracking-[0.2em] text-footer-muted uppercase">Exporting to 80+ countries</span>
+          <span className="text-xs font-bold tracking-[0.2em] text-footer-muted uppercase">Exporting to 20+ countries</span>
           <div className="flex flex-wrap items-center gap-8">
             {REGIONS.map((r) => (
               <span key={r} className="text-[14.5px] font-semibold text-[#D9DEE6]">
@@ -223,7 +223,7 @@ export default async function HomePage() {
             </h2>
             <p className="mt-5 text-[17px] text-muted">
               Sea and air freight from Karachi Port with full export documentation — commercial invoice, packing list,
-              phytosanitary and CoO. FOB, CIF, CFR and DDP terms supported.
+              phytosanitary and CoO. FOB, CIF and CFR terms supported.
             </p>
             <div className="mt-[22px] flex flex-wrap gap-3">
               {INCOTERMS.map((t) => (

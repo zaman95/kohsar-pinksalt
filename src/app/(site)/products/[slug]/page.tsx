@@ -52,7 +52,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
     { k: "MOQ", v: product.moq },
     { k: "Container load", v: "20ft ≈ 22–24 MT · 40ft ≈ 26–28 MT (product dependent)" },
     { k: "Lead time", v: "18–28 days after sample & PI approval" },
-    { k: "Incoterms", v: "FOB Karachi, CIF, CFR, DDP" },
+    { k: "Incoterms", v: "FOB Karachi, CIF, CFR" },
     { k: "Freight", v: "Sea (LCL/FCL) & air freight arranged" },
     { k: "Documents", v: "CI, packing list, CoO, phytosanitary, HS code included" },
   ];

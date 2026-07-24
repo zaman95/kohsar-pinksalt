@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     template: "%s — Kohsar Saltworks",
   },
   description:
-    "Manufacturer and exporter of Himalayan pink salt lamps, tiles, edible salt, bath salt and private-label products. Bulk wholesale, OEM and container-ready export from Pakistan to 80+ countries.",
+    "Manufacturer and exporter of Himalayan pink salt lamps, tiles, edible salt, bath salt and private-label products. Bulk wholesale, OEM and container-ready export from Pakistan to 20+ countries.",
   verification: {
     google: process.env.NEXT_PUBLIC_GSC_VERIFICATION || undefined,
   },

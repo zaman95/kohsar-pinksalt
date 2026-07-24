@@ -24,9 +24,10 @@ export const FALLBACK_CATEGORIES: Category[] = [
   { _id: "category-lamp-usb", name: "USB & Night Lamps", slug: "lamp-usb", blurb: "Mini USB lamps, plug-in night lights", order: 4 },
   { _id: "category-holder-tealight", name: "Candle Holders", slug: "holder-tealight", blurb: "Tealight, natural & geometric cut", order: 5 },
   { _id: "category-tile-cooking", name: "Salt Tiles & Bricks", slug: "tile-cooking", blurb: "Cooking tiles, wall & sauna bricks", order: 6 },
-  { _id: "category-edible-fine", name: "Edible / Cooking Salt", slug: "edible-fine", blurb: "Fine, coarse, granulated, kitchenware", order: 7 },
-  { _id: "category-bath-crystal", name: "Bath & Spa Salt", slug: "bath-crystal", blurb: "Bath crystals, massage stones", order: 8 },
-  { _id: "category-lick-block", name: "Animal Salt Licks", slug: "lick-block", blurb: "Livestock mineral lick blocks", order: 9 },
+  { _id: "category-edible-fine", name: "Edible / Cooking Salt", slug: "edible-fine", blurb: "Fine, coarse & granulated cuts", order: 7 },
+  { _id: "category-kitchenware", name: "Kitchenware", slug: "kitchenware", blurb: "Shot glasses, wine glasses, mortar & pestle, framed cooking tiles", order: 8 },
+  { _id: "category-bath-crystal", name: "Bath & Spa Salt", slug: "bath-crystal", blurb: "Bath crystals, massage stones", order: 9 },
+  { _id: "category-lick-block", name: "Animal Salt Licks", slug: "lick-block", blurb: "Livestock mineral lick blocks", order: 10 },
 ];
 
 const CATEGORY_BY_SLUG = new Map(FALLBACK_CATEGORIES.map((c) => [c.slug, { name: c.name, slug: c.slug }]));
@@ -126,6 +127,20 @@ export const FALLBACK_PRODUCTS: Product[] = [
     order: 7,
   },
   {
+    _id: "product-kitchenware",
+    name: "Salt Kitchenware · Serving & Prep",
+    slug: "kitchenware",
+    category: CATEGORY_BY_SLUG.get("kitchenware"),
+    tag: "Culinary",
+    moq: "300 pcs",
+    priceRange: "$1.80–8.50 / pc",
+    sizes: ["Shot / wine glass", "Mortar & pestle", "Framed cooking tile", "Urn / plate"],
+    description:
+      "Food-grade Himalayan salt kitchenware — tequila shot sets, wine glasses, mortar & pestle, urns, plates and cooking tiles in wooden, stainless or iron frames. Custom sizes and private labels available on demand.",
+    featured: true,
+    order: 8,
+  },
+  {
     _id: "product-bath-crystal",
     name: "Spa Bath Salt Crystals",
     slug: "bath-crystal",
@@ -135,7 +150,7 @@ export const FALLBACK_PRODUCTS: Product[] = [
     priceRange: "$0.35–0.70 / kg",
     sizes: ["Coarse crystal", "Fine granule", "Scented blend"],
     description: "Graded bath crystals, optionally scented and blended. Supplied in retail jars, refill sacks or bulk supply for private label.",
-    order: 8,
+    order: 9,
   },
   {
     _id: "product-lick-block",
@@ -147,7 +162,7 @@ export const FALLBACK_PRODUCTS: Product[] = [
     priceRange: "$0.15–0.30 / kg",
     sizes: ["1kg", "2kg", "5kg", "with/without rope"],
     description: "Natural mineral lick blocks for cattle and equine, with or without rope, in standard block weights for agricultural distributors.",
-    order: 9,
+    order: 10,
   },
 ];
 
@@ -242,7 +257,7 @@ export const FALLBACK_FAQS: Faq[] = [
   { _id: "faq-q1", category: "Ordering", question: "What is your minimum order quantity (MOQ)?", answer: "MOQ varies by product — typically 300–1,000 pieces for lamps and décor, or 3,000–10,000 kg for bulk salt. Custom and private-label orders may have higher minimums; we'll confirm exact figures on your quote.", order: 1 },
   { _id: "faq-q2", category: "Ordering", question: "Can I order a sample before committing to a full container?", answer: "Yes. We offer paid or freight-collect samples for every product line so you can verify quality before placing a bulk order.", order: 2 },
   { _id: "faq-q3", category: "Payment", question: "What payment terms do you accept?", answer: "T/T (30% deposit, 70% before shipment) is standard. Established buyers with repeat orders may qualify for L/C or open-account terms.", order: 3 },
-  { _id: "faq-q4", category: "Shipping", question: "Which Incoterms do you support?", answer: "FOB Karachi is most common; we also quote CIF, CFR, EXW and DDP depending on your logistics preference.", order: 4 },
+  { _id: "faq-q4", category: "Shipping", question: "Which Incoterms do you support?", answer: "FOB Karachi is most common; we also quote CIF, and CFR.", order: 4 },
   { _id: "faq-q5", category: "Shipping", question: "How long does production and shipping take?", answer: "Typical lead time is 18–28 days after sample and PI approval, plus sea transit time to your port (varies by destination).", order: 5 },
   { _id: "faq-q6", category: "Private Label", question: "Do you offer private label and custom packaging?", answer: "Yes — logo engraving, custom retail boxes, branded cartons and compliance labelling are all available. See our OEM / Private Label page for the full workflow.", order: 6 },
   { _id: "faq-q7", category: "Private Label", question: "Is there a minimum order for private label programs?", answer: "Private label programs typically start at 1,000–2,000 units per SKU to justify custom packaging tooling and print runs.", order: 7 },
@@ -261,5 +276,5 @@ export const FALLBACK_CERTIFICATIONS: Certification[] = [
 export const FALLBACK_TESTIMONIALS: Testimonial[] = [
   { _id: "testimonial-reinhardt", quote: "Consistent quality across three years of container orders. Their private-label program made our retail launch effortless.", name: "M. Reinhardt", role: "Wellness Importer · Germany", order: 1 },
   { _id: "testimonial-coleman", quote: "Fast quotes, honest lead times, and packaging that survives the ocean. Exactly what a distributor needs.", name: "Sarah Coleman", role: "Distributor · USA", order: 2 },
-  { _id: "testimonial-tanaka", quote: "From sampling to DDP delivery, the export team handled everything. Documentation was flawless.", name: "Y. Tanaka", role: "Retail Chain · Japan", order: 3 },
+  { _id: "testimonial-tanaka", quote: "From sampling to delivery, the export team handled everything. Documentation was flawless.", name: "Y. Tanaka", role: "Retail Chain · Japan", order: 3 },
 ];

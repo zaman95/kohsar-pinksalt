@@ -5,7 +5,7 @@ import { CONTAINER_GUIDE, INCOTERMS, REGIONS } from "@/lib/constants";
 
 export const metadata: Metadata = {
   title: "Export & Shipping",
-  description: "Container-ready logistics, worldwide — sea and air freight from Karachi Port with full export documentation to 80+ countries.",
+  description: "Container-ready logistics, worldwide — sea and air freight from Karachi Port with full export documentation to 20+ countries.",
   alternates: { canonical: "/export" },
 };
 
@@ -15,7 +15,7 @@ export default function ExportPage() {
       <PageHero
         crumbs={[{ name: "Home", href: "/" }, { name: "Export & Shipping" }]}
         title="Container-ready logistics, worldwide"
-        lead="Sea and air freight from Karachi Port with full export documentation, to 80+ countries."
+        lead="Sea and air freight from Karachi Port with full export documentation, to 20+ countries."
         maxWidth="max-w-[680px]"
       />
 
