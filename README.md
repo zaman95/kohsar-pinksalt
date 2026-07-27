@@ -42,7 +42,7 @@ cp .env.local.example .env.local
 | `NEXT_PUBLIC_CLARITY_PROJECT_ID` | Microsoft Clarity | clarity.microsoft.com → project settings |
 | `NEXT_PUBLIC_GSC_VERIFICATION` | Search Console | Search Console → Settings → Ownership verification → HTML tag (copy just the `content` value) |
 
-Without Sanity configured the site still builds and runs with full real content — every query in `src/lib/queries.ts` falls back to the local starter content in `src/lib/fallbackContent.ts` (same catalog/blog/FAQs/certs/testimonials as the original design) instead of shipping an empty page. The moment Sanity has real documents, those take over automatically. Without `RESEND_API_KEY` set, form submissions are logged to the server console instead of emailed, so you can test the full form flow before wiring up Resend.
+Without Sanity configured the site still builds and runs with full real content — every query in `src/lib/queries.ts` falls back to the local starter content in `src/lib/fallbackContent.ts` (same catalog/blog/FAQs/certs as the original design) instead of shipping an empty page. The moment Sanity has real documents, those take over automatically. Without `RESEND_API_KEY` set, the quote/contact forms show visitors an honest "form temporarily unavailable, email us directly" error instead of silently dropping their inquiry — **set `RESEND_API_KEY` in production or you will lose leads.**
 
 ## 3. Set up Sanity
 
@@ -89,7 +89,8 @@ src/
     sitemap.ts, robots.ts, opengraph-image.tsx
   components/           Header, Footer, cards, forms, SanityImage, ui/Button
   lib/
-    constants.ts         static brand content (nav, process steps, etc.)
+    copy.ts              ALL editable page text/SEO copy — edit wording here
+    constants.ts         site config + company contact details
     queries.ts            typed GROQ fetchers, fall back to fallbackContent.ts
     fallbackContent.ts      local starter catalog/blog/FAQs/certs/testimonials
     stockImages.ts          slug → local stock photo map (public/images/stock)
@@ -102,7 +103,7 @@ scripts/seed.ts          one-time content migration into Sanity
 public/images/stock/      free-licensed (Unsplash) placeholder photography
 ```
 
-Content split: product catalog, blog, FAQs, certifications and testimonials live in Sanity (things a non-developer should be able to edit) — until it's configured, `fallbackContent.ts` serves the same content locally. Structural/rarely-changing copy (nav labels, process steps, Incoterms, container-loading guide, etc.) stays in `src/lib/constants.ts` — editing that requires a code change and redeploy.
+Content split: product catalog, blog, FAQs, certifications and testimonials live in Sanity (things a non-developer should be able to edit) — until it's configured, `fallbackContent.ts` serves the same content locally. **Every other piece of website text** (page headlines, section copy, buttons, SEO titles/descriptions, nav labels, process steps, Incoterms, stats…) lives in `src/lib/copy.ts` — one file to edit wording or tune SEO, then redeploy. Company contact details (email, phone, address) are in `src/lib/constants.ts`. Search both files for `TODO(owner)` — those mark business claims that must be replaced with your real figures.
 
 ### Images
 

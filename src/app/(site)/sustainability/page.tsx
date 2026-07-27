@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/PageHero";
-import { SUSTAINABILITY } from "@/lib/constants";
+import { SUSTAINABILITY, SUSTAINABILITY_PAGE } from "@/lib/copy";
 
 export const metadata: Metadata = {
-  title: "Sustainability",
-  description: "Responsible sourcing, from mine to market — ethical labour practices, waste reduction, sustainable packaging and community investment.",
+  title: SUSTAINABILITY_PAGE.metaTitle,
+  description: SUSTAINABILITY_PAGE.metaDescription,
   alternates: { canonical: "/sustainability" },
 };
 
@@ -13,7 +13,7 @@ export default function SustainabilityPage() {
     <main>
       <PageHero
         crumbs={[{ name: "Home", href: "/" }, { name: "Sustainability" }]}
-        title="Responsible sourcing, from mine to market"
+        title={SUSTAINABILITY_PAGE.heroTitle}
         maxWidth="max-w-[680px]"
       />
 

@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/PageHero";
 import { LinkButton } from "@/components/ui/Button";
-import { WHOLESALE_STEPS } from "@/lib/constants";
+import { PROCESS, WHOLESALE_STEPS } from "@/lib/copy";
 
 export const metadata: Metadata = {
-  title: "Wholesale Process",
-  description: "From first inquiry to delivered container — the seven-step wholesale process for ordering from Kohsar Saltworks.",
+  title: PROCESS.metaTitle,
+  description: PROCESS.metaDescription,
   alternates: { canonical: "/process" },
 };
 
@@ -14,7 +14,7 @@ export default function ProcessPage() {
     <main>
       <PageHero
         crumbs={[{ name: "Home", href: "/" }, { name: "Wholesale Process" }]}
-        title="From first inquiry to delivered container"
+        title={PROCESS.heroTitle}
         maxWidth="max-w-none"
       />
 
@@ -30,7 +30,7 @@ export default function ProcessPage() {
           </div>
         ))}
         <div className="mt-12 text-center">
-          <LinkButton href="/quote">Start step one — request a quote &rarr;</LinkButton>
+          <LinkButton href="/quote">{PROCESS.cta}</LinkButton>
         </div>
       </section>
     </main>

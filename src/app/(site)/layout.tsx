@@ -9,7 +9,7 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
 
   return (
     <div className="min-h-screen bg-bg">
-      <Header founded={COMPANY.founded} />
+      <Header />
       {children}
       <Footer settings={settings} products={products} />
       <FloatingActions whatsappNumber={settings.whatsappNumber || COMPANY.whatsapp} />

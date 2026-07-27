@@ -4,6 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Breadcrumb } from "@/components/Breadcrumb";
 import { SanityImage } from "@/components/SanityImage";
+import { BLOG } from "@/lib/copy";
 import { JsonLdScript, articleJsonLd, breadcrumbJsonLd } from "@/lib/jsonld";
 import { getAllPostSlugs, getPostBySlug, getRelatedPosts } from "@/lib/queries";
 import { BLOG_STOCK } from "@/lib/stockImages";
@@ -66,7 +67,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
       {related.length > 0 && (
         <section className="mx-auto max-w-[1240px] px-[18px] py-[70px] pb-20 sm:px-8">
-          <h2 className="mb-5.5 font-heading text-2xl font-extrabold tracking-tight">More from the blog</h2>
+          <h2 className="mb-5.5 font-heading text-2xl font-extrabold tracking-tight">{BLOG.relatedTitle}</h2>
           <div className="grid grid-cols-1 gap-5.5 sm:grid-cols-3">
             {related.map((p) => (
               <Link key={p._id} href={`/blog/${p.slug}`} className="block overflow-hidden rounded-2xl border border-border-3 bg-white">

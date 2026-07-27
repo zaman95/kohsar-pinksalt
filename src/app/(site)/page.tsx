@@ -6,13 +6,13 @@ import { STOCK } from "@/lib/stockImages";
 import { SectionHeading } from "@/components/SectionHeading";
 import { LinkButton } from "@/components/ui/Button";
 import { JsonLdScript, organizationJsonLd } from "@/lib/jsonld";
-import { COMPANY, INCOTERMS, OEM_POINTS, PROCESS_STEPS, REGIONS, SHIP_CARDS, STATS } from "@/lib/constants";
+import { COMPANY } from "@/lib/constants";
+import { HOME, INCOTERMS, OEM_POINTS, PROCESS_STEPS, REGIONS, SHIP_CARDS, STATS } from "@/lib/copy";
 import { getCategories, getCertifications, getFeaturedProducts, getTestimonials } from "@/lib/queries";
 
 export const metadata: Metadata = {
-  title: "Wholesale Himalayan Pink Salt Manufacturer & Exporter",
-  description:
-    "Bulk wholesale, private label, and custom manufacturing of Himalayan pink salt products for importers, distributors and brands in 20+ countries. FDA & ISO certified, container-ready.",
+  title: HOME.metaTitle,
+  description: HOME.metaDescription,
   alternates: { canonical: "/" },
 };
 
@@ -31,25 +31,22 @@ export default async function HomePage() {
       {/* HERO */}
       <section className="relative flex min-h-[560px] items-center overflow-hidden bg-ink">
         <div className="absolute inset-0">
-          <SanityImage image={undefined} alt="Salt lamp glowing in a warm interior" priority fallbackSrc={STOCK.heroLampInterior} />
+          <SanityImage image={undefined} alt={HOME.heroImageAlt} priority fallbackSrc={STOCK.heroLampInterior} />
           <div className="absolute inset-0 bg-linear-to-r from-ink/90 via-ink/60 to-ink/20" />
         </div>
         <div className="relative z-10 mx-auto w-full max-w-[1240px] px-[18px] py-16 sm:px-8">
           <div className="animate-float-up max-w-[640px]">
             <span className="mb-5 inline-block text-xs font-bold tracking-[0.24em] text-pink uppercase">{COMPANY.tagline}</span>
             <h1 className="font-heading text-[32px] leading-[1.06] font-extrabold tracking-tight text-bg sm:text-5xl lg:text-[58px]">
-              Premium Himalayan Pink Salt, straight from the source in Pakistan.
+              {HOME.hero.title}
             </h1>
-            <p className="mt-[22px] max-w-[520px] text-lg text-[#E7DDD5]">
-              Bulk wholesale, private label, and custom manufacturing for importers, distributors and brands worldwide. FDA
-              &amp; ISO certified. Container-ready.
-            </p>
+            <p className="mt-[22px] max-w-[520px] text-lg text-[#E7DDD5]">{HOME.hero.lead}</p>
             <div className="mt-[34px] flex flex-wrap gap-3.5">
               <LinkButton href="/quote" variant="pink" size="lg">
-                Request Wholesale Quote &rarr;
+                {HOME.hero.ctaPrimary}
               </LinkButton>
               <LinkButton href="/catalog" variant="ghost-light" size="lg">
-                Download Catalog
+                {HOME.hero.ctaSecondary}
               </LinkButton>
             </div>
           </div>
@@ -59,7 +56,7 @@ export default async function HomePage() {
       {/* TRUST STRIP */}
       <section className="bg-ink px-[18px] py-6 sm:px-8">
         <div className="mx-auto flex max-w-[1240px] flex-wrap items-center justify-between gap-6">
-          <span className="text-xs font-bold tracking-[0.2em] text-footer-muted uppercase">Exporting to 20+ countries</span>
+          <span className="text-xs font-bold tracking-[0.2em] text-footer-muted uppercase">{HOME.trustStrip}</span>
           <div className="flex flex-wrap items-center gap-8">
             {REGIONS.map((r) => (
               <span key={r} className="text-[14.5px] font-semibold text-[#D9DEE6]">
@@ -74,17 +71,13 @@ export default async function HomePage() {
       <section className="mx-auto max-w-[1240px] px-[18px] py-16 sm:px-8 lg:py-[110px]">
         <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-16">
           <div>
-            <span className="text-xs font-bold tracking-[0.24em] text-brown uppercase">Why Kohsar</span>
+            <span className="text-xs font-bold tracking-[0.24em] text-brown uppercase">{HOME.why.eyebrow}</span>
             <h2 className="mt-4 font-heading text-[28px] leading-[1.08] font-extrabold tracking-tight sm:text-4xl lg:text-[42px]">
-              A vertically integrated salt house — mine to container.
+              {HOME.why.title}
             </h2>
-            <p className="mt-[22px] text-[17px] text-muted">
-              We control extraction liaison, hand-carving workshops, an edible-grade processing line and export packing under one
-              roof near the Khewra range. That control is why global buyers trust us with private-label programs and repeat
-              container orders.
-            </p>
+            <p className="mt-[22px] text-[17px] text-muted">{HOME.why.body}</p>
             <LinkButton href="/about" variant="link" className="mt-[30px]">
-              Our story &amp; facility &rarr;
+              {HOME.why.cta}
             </LinkButton>
           </div>
           <div className="grid grid-cols-2 gap-5">
@@ -103,13 +96,13 @@ export default async function HomePage() {
         <div className="mx-auto max-w-[1240px]">
           <div className="mb-10 flex flex-wrap items-end justify-between gap-5">
             <div>
-              <span className="text-xs font-bold tracking-[0.24em] text-brown uppercase">Product Range</span>
+              <span className="text-xs font-bold tracking-[0.24em] text-brown uppercase">{HOME.categories.eyebrow}</span>
               <h2 className="mt-3.5 font-heading text-[28px] font-extrabold tracking-tight sm:text-4xl lg:text-[42px]">
-                Everything we make from pink salt
+                {HOME.categories.title}
               </h2>
             </div>
             <LinkButton href="/products" size="sm">
-              View all products &rarr;
+              {HOME.categories.cta}
             </LinkButton>
           </div>
           <div className="grid grid-cols-2 gap-5 lg:grid-cols-4">
@@ -122,7 +115,7 @@ export default async function HomePage() {
 
       {/* PROCESS */}
       <section className="mx-auto max-w-[1240px] px-[18px] py-16 sm:px-8 lg:py-[110px]">
-        <SectionHeading eyebrow="From Mine to Market" title="A controlled four-stage process" center className="mb-14" />
+        <SectionHeading eyebrow={HOME.process.eyebrow} title={HOME.process.title} center className="mb-14" />
         <div className="grid grid-cols-2 gap-6 lg:grid-cols-4">
           {PROCESS_STEPS.map((p) => (
             <div key={p.num} className="border-t-2 border-pink pt-3.5">
@@ -140,13 +133,13 @@ export default async function HomePage() {
           <div className="mx-auto max-w-[1240px]">
             <div className="mb-10 flex flex-wrap items-end justify-between gap-5">
               <div>
-                <span className="text-xs font-bold tracking-[0.24em] text-pink uppercase">Best Sellers</span>
+                <span className="text-xs font-bold tracking-[0.24em] text-pink uppercase">{HOME.featured.eyebrow}</span>
                 <h2 className="mt-3.5 font-heading text-[28px] font-extrabold tracking-tight text-bg sm:text-4xl lg:text-[42px]">
-                  Featured wholesale products
+                  {HOME.featured.title}
                 </h2>
               </div>
               <LinkButton href="/products" variant="ghost-light" size="sm">
-                Browse catalog &rarr;
+                {HOME.featured.cta}
               </LinkButton>
             </div>
             <div className="grid grid-cols-2 gap-5 lg:grid-cols-4">
@@ -164,20 +157,17 @@ export default async function HomePage() {
           <div className="relative h-[300px] overflow-hidden rounded-[22px] lg:h-[420px]">
             <SanityImage
               image={undefined}
-              alt="Custom branded packaging"
+              alt={HOME.oem.imageAlt}
               fallbackSrc={STOCK.packaging}
               sizes="(min-width: 1024px) 50vw, 100vw"
             />
           </div>
           <div>
-            <span className="text-xs font-bold tracking-[0.24em] text-brown uppercase">OEM &amp; Private Label</span>
+            <span className="text-xs font-bold tracking-[0.24em] text-brown uppercase">{HOME.oem.eyebrow}</span>
             <h2 className="mt-4 font-heading text-[28px] leading-[1.08] font-extrabold tracking-tight sm:text-4xl lg:text-[42px]">
-              Your brand, our factory floor.
+              {HOME.oem.title}
             </h2>
-            <p className="mt-5 text-[17px] text-muted">
-              From logo-engraved lamps to fully retail-ready cartons and gift boxes, we build private-label programs end to end
-              — design, sampling, compliance labelling and export.
-            </p>
+            <p className="mt-5 text-[17px] text-muted">{HOME.oem.body}</p>
             <div className="mt-[26px] grid grid-cols-2 gap-4">
               {OEM_POINTS.map((o) => (
                 <div key={o} className="flex items-start gap-3">
@@ -187,19 +177,19 @@ export default async function HomePage() {
               ))}
             </div>
             <LinkButton href="/quote" className="mt-[30px]">
-              Start a private-label inquiry &rarr;
+              {HOME.oem.cta}
             </LinkButton>
           </div>
         </div>
       </section>
 
-      {/* CERTIFICATIONS */}
+      {/* CERTIFICATIONS / DOCUMENTATION */}
       {certifications.length > 0 && (
         <section className="bg-alt px-[18px] py-16 sm:px-8 lg:py-[90px]">
           <div className="mx-auto max-w-[1240px] text-center">
-            <span className="text-xs font-bold tracking-[0.24em] text-brown uppercase">Certified &amp; Compliant</span>
+            <span className="text-xs font-bold tracking-[0.24em] text-brown uppercase">{HOME.certifications.eyebrow}</span>
             <h2 className="mt-3.5 mb-9 font-heading text-[26px] font-extrabold tracking-tight sm:text-4xl">
-              Quality documented at every step
+              {HOME.certifications.title}
             </h2>
             <div className="flex flex-wrap justify-center gap-4">
               {certifications.map((c) => (
@@ -217,14 +207,11 @@ export default async function HomePage() {
       <section className="mx-auto max-w-[1240px] px-[18px] py-16 sm:px-8 lg:py-[110px]">
         <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-14">
           <div>
-            <span className="text-xs font-bold tracking-[0.24em] text-brown uppercase">Export &amp; Logistics</span>
+            <span className="text-xs font-bold tracking-[0.24em] text-brown uppercase">{HOME.export.eyebrow}</span>
             <h2 className="mt-4 font-heading text-[28px] leading-[1.08] font-extrabold tracking-tight sm:text-4xl lg:text-[42px]">
-              Container-ready, worldwide.
+              {HOME.export.title}
             </h2>
-            <p className="mt-5 text-[17px] text-muted">
-              Sea and air freight from Karachi Port with full export documentation — commercial invoice, packing list,
-              phytosanitary and CoO. FOB, CIF and CFR terms supported.
-            </p>
+            <p className="mt-5 text-[17px] text-muted">{HOME.export.body}</p>
             <div className="mt-[22px] flex flex-wrap gap-3">
               {INCOTERMS.map((t) => (
                 <span key={t} className="rounded-full border border-border-5 px-[18px] py-2 text-[13px] font-bold text-muted">
@@ -245,11 +232,11 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* TESTIMONIALS */}
+      {/* TODO: TESTIMONIALS — hidden until real client quotes are added */}
       {testimonials.length > 0 && (
         <section className="bg-ink px-[18px] py-16 sm:px-8 lg:py-[104px]">
           <div className="mx-auto max-w-[1240px]">
-            <span className="text-xs font-bold tracking-[0.24em] text-pink uppercase">Trusted by buyers worldwide</span>
+            <span className="text-xs font-bold tracking-[0.24em] text-pink uppercase">{HOME.testimonials.eyebrow}</span>
             <div className="mt-9 grid grid-cols-1 gap-6 md:grid-cols-3">
               {testimonials.map((t) => (
                 <div key={t._id} className="rounded-[20px] border border-white/10 bg-white/5 p-8">
@@ -272,17 +259,15 @@ export default async function HomePage() {
       <section className="mx-auto max-w-[1240px] px-[18px] py-16 sm:px-8 lg:py-[110px]">
         <div className="rounded-[28px] bg-pink px-6 py-14 text-center sm:px-12 lg:py-[70px]">
           <h2 className="mx-auto max-w-[720px] font-heading text-[28px] leading-[1.06] font-extrabold tracking-tight text-ink sm:text-4xl lg:text-[46px]">
-            Ready to source Himalayan salt at scale?
+            {HOME.finalCta.title}
           </h2>
-          <p className="mx-auto mt-4.5 max-w-[560px] text-lg text-[#5A3E31]">
-            Send us your requirement — we reply with pricing, samples and lead times within one business day.
-          </p>
+          <p className="mx-auto mt-4.5 max-w-[560px] text-lg text-[#5A3E31]">{HOME.finalCta.lead}</p>
           <div className="mt-9 flex flex-wrap justify-center gap-3.5">
             <LinkButton href="/quote" size="lg">
-              Request a Quote
+              {HOME.finalCta.ctaPrimary}
             </LinkButton>
             <LinkButton href="/products" variant="ghost-dark" size="lg">
-              Browse products
+              {HOME.finalCta.ctaSecondary}
             </LinkButton>
           </div>
         </div>

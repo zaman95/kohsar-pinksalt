@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/PageHero";
-import { QC_STAGES, QC_TABLE } from "@/lib/constants";
+import { QC_STAGES, QC_TABLE, QUALITY } from "@/lib/copy";
 
 export const metadata: Metadata = {
-  title: "Quality Control",
-  description: "Inspected at every stage, not just the last — raw material grading, in-process checks, lab testing and pre-shipment inspection.",
+  title: QUALITY.metaTitle,
+  description: QUALITY.metaDescription,
   alternates: { canonical: "/quality" },
 };
 
@@ -13,7 +13,7 @@ export default function QualityPage() {
     <main>
       <PageHero
         crumbs={[{ name: "Home", href: "/" }, { name: "Quality Control" }]}
-        title="Inspected at every stage, not just the last"
+        title={QUALITY.heroTitle}
         maxWidth="max-w-none"
       />
 
@@ -31,9 +31,9 @@ export default function QualityPage() {
           <table className="w-full min-w-[520px] border-collapse text-left">
             <thead>
               <tr className="bg-ink text-xs font-bold text-bg">
-                <th className="px-6 py-4 font-bold">Parameter</th>
-                <th className="px-6 py-4 font-bold">Standard</th>
-                <th className="px-6 py-4 font-bold">Test method</th>
+                <th className="px-6 py-4 font-bold">{QUALITY.tableHeaders.param}</th>
+                <th className="px-6 py-4 font-bold">{QUALITY.tableHeaders.standard}</th>
+                <th className="px-6 py-4 font-bold">{QUALITY.tableHeaders.method}</th>
               </tr>
             </thead>
             <tbody>

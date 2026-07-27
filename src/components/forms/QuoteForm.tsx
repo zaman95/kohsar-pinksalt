@@ -4,6 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { submitQuoteForm } from "@/app/actions";
+import { FORMS } from "@/lib/copy";
 import { quoteFormSchema, type QuoteFormValues } from "@/lib/validations";
 import type { Category } from "@/lib/types";
 
@@ -38,11 +39,8 @@ export function QuoteForm({ categories }: { categories: Category[] }) {
         <div className="mx-auto mb-7 flex h-[78px] w-[78px] items-center justify-center rounded-full bg-pink text-[38px] font-extrabold text-ink">
           &#10003;
         </div>
-        <h1 className="font-heading text-[32px] font-extrabold tracking-tight sm:text-4xl">Inquiry received — thank you.</h1>
-        <p className="mt-4 text-lg text-muted">
-          Our export team has your request and will reply within one business day with pricing, available samples and estimated
-          lead times. A confirmation has been sent to your email.
-        </p>
+        <h1 className="font-heading text-[32px] font-extrabold tracking-tight sm:text-4xl">{FORMS.quoteSuccessTitle}</h1>
+        <p className="mt-4 text-lg text-muted">{FORMS.quoteSuccessBody}</p>
       </section>
     );
   }
@@ -139,7 +137,7 @@ export function QuoteForm({ categories }: { categories: Category[] }) {
         disabled={isSubmitting}
         className="mt-6 w-full rounded-full bg-ink py-[17px] text-base font-bold text-bg transition-colors hover:bg-pink hover:text-ink disabled:opacity-60"
       >
-        {isSubmitting ? "Submitting…" : "Submit inquiry →"}
+        {isSubmitting ? FORMS.quoteSubmitting : FORMS.quoteSubmit}
       </button>
     </form>
   );

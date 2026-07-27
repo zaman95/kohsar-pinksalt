@@ -138,8 +138,8 @@ async function seed() {
     legalName: "Kohsar Saltworks (Pvt) Ltd.",
     tagline: "Manufacturer · Exporter · OEM Partner",
     email: "export@kohsarsaltworks.com",
-    phone: "+92 300 000 0000",
-    whatsappNumber: "920000000000",
+    phone: "+92 345 117 1957",
+    whatsappNumber: "923451171957",
     factoryAddress: "Khewra Industrial Zone, Jhelum, Punjab, Pakistan",
     hours: "Mon–Sat, 9:00–18:00 PKT",
   });

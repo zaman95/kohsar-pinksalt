@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { FOOTER_COMPANY, FOOTER_RESOURCES } from "@/lib/constants";
+import { FOOTER, FOOTER_COMPANY, FOOTER_RESOURCES } from "@/lib/copy";
 import type { Product, SiteSettings } from "@/lib/types";
 
 const FEATURED_PRODUCT_SLUGS = ["lamp-natural", "holder-tealight", "edible-fine", "bath-crystal", "tile-cooking"];
@@ -18,9 +18,7 @@ export function Footer({ settings, products }: { settings: SiteSettings; product
               <span className="block h-6 w-6 rotate-45 rounded-[5px] bg-pink" />
               <span className="font-heading text-[17px] font-extrabold tracking-[0.14em] text-bg">KOHSAR</span>
             </div>
-            <p className="mt-[18px] max-w-[260px] text-sm text-footer-muted">
-              Himalayan pink salt manufacturer &amp; exporter. Mine-to-container supply for wholesale buyers worldwide.
-            </p>
+            <p className="mt-[18px] max-w-[260px] text-sm text-footer-muted">{FOOTER.blurb}</p>
             <div className="mt-[18px] text-[13px] leading-[1.7] text-footer-muted">
               {settings.factoryAddress}
               <br />
@@ -31,7 +29,7 @@ export function Footer({ settings, products }: { settings: SiteSettings; product
           </div>
 
           <div>
-            <div className="mb-4 text-xs font-bold tracking-[0.14em] text-bg uppercase">Products</div>
+            <div className="mb-4 text-xs font-bold tracking-[0.14em] text-bg uppercase">{FOOTER.productsHeading}</div>
             <div className="flex flex-col">
               {footerProducts.map((p) => (
                 <Link key={p._id} href={`/products/${p.slug}`} className="py-1.5 text-sm text-footer-muted hover:text-bg">
@@ -39,13 +37,13 @@ export function Footer({ settings, products }: { settings: SiteSettings; product
                 </Link>
               ))}
               <Link href="/products" className="py-1.5 text-sm text-footer-muted hover:text-bg">
-                View all products
+                {FOOTER.viewAllProducts}
               </Link>
             </div>
           </div>
 
           <div>
-            <div className="mb-4 text-xs font-bold tracking-[0.14em] text-bg uppercase">Company</div>
+            <div className="mb-4 text-xs font-bold tracking-[0.14em] text-bg uppercase">{FOOTER.companyHeading}</div>
             <div className="flex flex-col">
               {FOOTER_COMPANY.map((item) => (
                 <Link key={item.href} href={item.href} className="py-1.5 text-sm text-footer-muted hover:text-bg">
@@ -56,7 +54,7 @@ export function Footer({ settings, products }: { settings: SiteSettings; product
           </div>
 
           <div>
-            <div className="mb-4 text-xs font-bold tracking-[0.14em] text-bg uppercase">Resources</div>
+            <div className="mb-4 text-xs font-bold tracking-[0.14em] text-bg uppercase">{FOOTER.resourcesHeading}</div>
             <div className="flex flex-col">
               {FOOTER_RESOURCES.map((item) => (
                 <Link key={item.href} href={item.href} className="py-1.5 text-sm text-footer-muted hover:text-bg">
@@ -68,12 +66,16 @@ export function Footer({ settings, products }: { settings: SiteSettings; product
         </div>
 
         <div className="flex flex-wrap items-center justify-between gap-3 pt-6">
-          <span className="text-[13px] text-footer-line">&copy; {new Date().getFullYear()} {settings.legalName}. All rights reserved.</span>
+          <span className="text-[13px] text-footer-line">&copy; {settings.legalName}. All rights reserved.</span>
           <div className="flex gap-5">
-            <span className="text-[13px] text-footer-line">Privacy</span>
-            <span className="text-[13px] text-footer-line">Terms</span>
+            <Link href="/privacy" className="text-[13px] text-footer-line hover:text-bg">
+              {FOOTER.privacyLabel}
+            </Link>
+            <Link href="/terms" className="text-[13px] text-footer-line hover:text-bg">
+              {FOOTER.termsLabel}
+            </Link>
             <Link href="/sitemap.xml" className="text-[13px] text-footer-line hover:text-bg">
-              Sitemap
+              {FOOTER.sitemapLabel}
             </Link>
           </div>
         </div>

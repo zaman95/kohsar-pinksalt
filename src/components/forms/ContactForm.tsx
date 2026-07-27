@@ -4,6 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { submitContactForm } from "@/app/actions";
+import { FORMS } from "@/lib/copy";
 import { contactFormSchema, type ContactFormValues } from "@/lib/validations";
 
 const fieldClass =
@@ -36,8 +37,8 @@ export function ContactForm() {
         <div className="mx-auto mb-4.5 flex h-[60px] w-[60px] items-center justify-center rounded-full bg-pink text-[28px] font-extrabold text-ink">
           &#10003;
         </div>
-        <h2 className="font-heading text-2xl font-extrabold">Message sent — thank you.</h2>
-        <p className="mt-2.5 text-[15px] text-muted">We&apos;ll get back to you within one business day.</p>
+        <h2 className="font-heading text-2xl font-extrabold">{FORMS.contactSuccessTitle}</h2>
+        <p className="mt-2.5 text-[15px] text-muted">{FORMS.contactSuccessBody}</p>
       </div>
     );
   }
@@ -71,7 +72,7 @@ export function ContactForm() {
           disabled={isSubmitting}
           className="rounded-full bg-ink py-[15px] text-[15px] font-bold text-bg transition-colors hover:bg-pink hover:text-ink disabled:opacity-60"
         >
-          {isSubmitting ? "Sending…" : "Send message →"}
+          {isSubmitting ? FORMS.contactSubmitting : FORMS.contactSubmit}
         </button>
       </div>
     </form>

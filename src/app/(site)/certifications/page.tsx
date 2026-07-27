@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/PageHero";
+import { CERTIFICATIONS } from "@/lib/copy";
 import { getCertifications } from "@/lib/queries";
 
 export const metadata: Metadata = {
-  title: "Certifications",
-  description: "ISO 22000, ISO 9001, HACCP, SGS inspection, FDA registration and Certificate of Origin — quality documented at every step.",
+  title: CERTIFICATIONS.metaTitle,
+  description: CERTIFICATIONS.metaDescription,
   alternates: { canonical: "/certifications" },
 };
 
@@ -15,7 +16,7 @@ export default async function CertificationsPage() {
     <main>
       <PageHero
         crumbs={[{ name: "Home", href: "/" }, { name: "Certifications" }]}
-        title="Quality documented at every step"
+        title={CERTIFICATIONS.heroTitle}
         maxWidth="max-w-none"
       />
 
@@ -36,9 +37,7 @@ export default async function CertificationsPage() {
             </div>
           ))}
         </div>
-        {certifications.length === 0 && (
-          <p className="text-muted">Certification details are being added — check back soon or request them in your quote.</p>
-        )}
+        {certifications.length === 0 && <p className="text-muted">{CERTIFICATIONS.empty}</p>}
       </section>
     </main>
   );

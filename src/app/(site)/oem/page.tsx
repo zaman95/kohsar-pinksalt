@@ -2,12 +2,12 @@ import type { Metadata } from "next";
 import { ImageHero } from "@/components/ImageHero";
 import { SanityImage } from "@/components/SanityImage";
 import { LinkButton } from "@/components/ui/Button";
-import { OEM_PACKAGING, WHOLESALE_STEPS } from "@/lib/constants";
+import { OEM, OEM_PACKAGING, WHOLESALE_STEPS } from "@/lib/copy";
 import { STOCK } from "@/lib/stockImages";
 
 export const metadata: Metadata = {
-  title: "OEM / Private Label",
-  description: "Your brand, manufactured at source — private-label salt lamps, cartons and gift boxes with design, sampling and compliance labelling.",
+  title: OEM.metaTitle,
+  description: OEM.metaDescription,
   alternates: { canonical: "/oem" },
 };
 
@@ -16,14 +16,14 @@ export default function OemPage() {
     <main>
       <ImageHero
         crumbs={[{ name: "Home", href: "/" }, { name: "OEM / Private Label" }]}
-        title="Your brand, manufactured at source"
-        imageAlt="Branded retail packaging lineup"
+        title={OEM.heroTitle}
+        imageAlt={OEM.heroImageAlt}
         height="h-[340px]"
         fallbackSrc={STOCK.packaging}
       />
 
       <section className="mx-auto max-w-[1240px] px-[18px] py-14 pb-8 sm:px-8 lg:pt-20">
-        <span className="text-xs font-bold tracking-[0.24em] text-brown uppercase">How it works</span>
+        <span className="text-xs font-bold tracking-[0.24em] text-brown uppercase">{OEM.howEyebrow}</span>
         <div className="mt-6 grid grid-cols-2 gap-4.5 sm:grid-cols-3 lg:grid-cols-5">
           {WHOLESALE_STEPS.slice(0, 5).map((p) => (
             <div key={p.n} className="border-t-2 border-pink pt-3.5">
@@ -35,7 +35,7 @@ export default function OemPage() {
       </section>
 
       <section className="mx-auto max-w-[1240px] px-[18px] py-14 sm:px-8">
-        <span className="text-xs font-bold tracking-[0.24em] text-brown uppercase">Packaging options</span>
+        <span className="text-xs font-bold tracking-[0.24em] text-brown uppercase">{OEM.packagingEyebrow}</span>
         <div className="mt-6 grid grid-cols-1 gap-5.5 sm:grid-cols-3">
           {OEM_PACKAGING.map((p) => (
             <div key={p.title}>
@@ -57,12 +57,10 @@ export default function OemPage() {
       <section className="mx-auto max-w-[1240px] px-[18px] py-14 pb-20 sm:px-8">
         <div className="flex flex-wrap items-center justify-between gap-6 rounded-[24px] bg-alt px-6 py-11 sm:px-12">
           <div>
-            <h3 className="font-heading text-2xl font-extrabold sm:text-[28px]">Typical private-label MOQ: 1,000–2,000 units / SKU</h3>
-            <p className="mt-2 text-[15px] text-[#6B5A4E]">
-              Covers custom tooling and print run cost. Ask about lower minimums for gift-box-only branding.
-            </p>
+            <h3 className="font-heading text-2xl font-extrabold sm:text-[28px]">{OEM.moqTitle}</h3>
+            <p className="mt-2 text-[15px] text-[#6B5A4E]">{OEM.moqLead}</p>
           </div>
-          <LinkButton href="/quote">Start a private-label inquiry &rarr;</LinkButton>
+          <LinkButton href="/quote">{OEM.cta}</LinkButton>
         </div>
       </section>
     </main>

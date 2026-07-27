@@ -119,7 +119,7 @@ export const FALLBACK_PRODUCTS: Product[] = [
     name: "Edible Fine Salt · 84+ Minerals",
     slug: "edible-fine",
     category: CATEGORY_BY_SLUG.get("edible-fine"),
-    tag: "FDA",
+    tag: "Food Grade",
     moq: "5,000 kg",
     priceRange: "$0.25–0.50 / kg",
     sizes: ["Fine", "Coarse", "Granulated"],
@@ -246,7 +246,7 @@ export const FALLBACK_POSTS: BlogPost[] = [
     excerpt: "Fair wages, ethical labour practices and waste reduction across our supply chain.",
     author: "Kohsar Export Team",
     body: toBlocks([
-      "We work only with licensed extraction partners who meet documented labour and safety standards, and we audit those sites twice a year.",
+      "We work only with licensed extraction partners who meet documented labour and safety standards, and we review those standards with our partners regularly.",
       "Offcuts from carving and cutting are reprocessed into edible-grade fine salt and bath salt rather than discarded, reducing raw material waste across the workshop.",
       "Packaging is shifting to FSC-certified cartons and recyclable inner materials as we phase out single-use plastic across our product range.",
     ]),
@@ -264,17 +264,39 @@ export const FALLBACK_FAQS: Faq[] = [
   { _id: "faq-q8", category: "Documentation", question: "What export documents do you provide?", answer: "Commercial invoice, packing list, certificate of origin, phytosanitary certificate and HS code classification are included with every shipment.", order: 8 },
 ];
 
+/**
+ * ⚠ TODO(owner): ONLY list certifications you actually hold. Claiming ISO /
+ * HACCP / FDA registration you don't have is false advertising and can be
+ * verified (and reported) by any serious buyer in minutes. The entries below
+ * are limited to standard per-shipment export documents that every Pakistani
+ * exporter provides. When you obtain a real certification, add it here (or
+ * in Sanity Studio) with the real certificate number and year — and be ready
+ * to email the certificate PDF when a buyer asks.
+ *
+ * Examples to add once genuinely obtained:
+ *   { _id: "cert-iso-22000", name: "ISO 22000", issuingBody: "<certifying body>", scope: "Food safety management system", year: "<year>", shortDesc: "Food safety", order: 10 },
+ *   { _id: "cert-haccp", name: "HACCP", issuingBody: "<certifying body>", scope: "Hazard analysis & critical control points", year: "<year>", shortDesc: "Hazard control", order: 11 },
+ *   { _id: "cert-fda", name: "FDA Facility Registration", issuingBody: "U.S. FDA", scope: "US food facility registration", year: "<year>", shortDesc: "US food facilities", order: 12 },
+ */
 export const FALLBACK_CERTIFICATIONS: Certification[] = [
-  { _id: "cert-iso-22000", name: "ISO 22000", issuingBody: "International Standards Org.", scope: "Food safety management system", year: "2016", shortDesc: "Food safety", order: 1 },
-  { _id: "cert-iso-9001", name: "ISO 9001", issuingBody: "International Standards Org.", scope: "Quality management system", year: "2014", shortDesc: "Quality mgmt", order: 2 },
-  { _id: "cert-haccp", name: "HACCP", issuingBody: "Codex Alimentarius", scope: "Hazard analysis & critical control points", year: "2017", shortDesc: "Hazard control", order: 3 },
-  { _id: "cert-sgs", name: "SGS Inspection", issuingBody: "SGS S.A.", scope: "Pre-shipment quality inspection", year: "Annual", shortDesc: "Inspection", order: 4 },
-  { _id: "cert-fda", name: "FDA Registration", issuingBody: "U.S. FDA", scope: "US food-grade facility registration", year: "2019", shortDesc: "US food grade", order: 5 },
-  { _id: "cert-coo", name: "Certificate of Origin", issuingBody: "Chamber of Commerce, Pakistan", scope: "Per-shipment origin certification", year: "Per shipment", shortDesc: "Origin certified", order: 6 },
+  { _id: "cert-coo", name: "Certificate of Origin", issuingBody: "Chamber of Commerce, Pakistan", scope: "Per-shipment origin certification", year: "Per shipment", shortDesc: "Origin certified", order: 1 },
+  { _id: "cert-phyto", name: "Phytosanitary Certificate", issuingBody: "Dept. of Plant Protection, Pakistan", scope: "Per-shipment export health certification", year: "Per shipment", shortDesc: "Export compliance", order: 2 },
+  { _id: "cert-lab", name: "Batch Lab Reports", issuingBody: "Independent laboratory", scope: "Purity, moisture & heavy-metal analysis per edible batch", year: "Per batch", shortDesc: "Lab tested", order: 3 },
+  { _id: "cert-inspection", name: "Pre-Shipment Inspection", issuingBody: "Third-party, on request", scope: "Independent inspection available for any order", year: "On request", shortDesc: "Inspection", order: 4 },
 ];
 
-export const FALLBACK_TESTIMONIALS: Testimonial[] = [
-  { _id: "testimonial-reinhardt", quote: "Consistent quality across three years of container orders. Their private-label program made our retail launch effortless.", name: "M. Reinhardt", role: "Wellness Importer · Germany", order: 1 },
-  { _id: "testimonial-coleman", quote: "Fast quotes, honest lead times, and packaging that survives the ocean. Exactly what a distributor needs.", name: "Sarah Coleman", role: "Distributor · USA", order: 2 },
-  { _id: "testimonial-tanaka", quote: "From sampling to delivery, the export team handled everything. Documentation was flawless.", name: "Y. Tanaka", role: "Retail Chain · Japan", order: 3 },
-];
+/**
+ * ⚠ TODO(owner): add real customer quotes only — with the customer's written
+ * permission. Invented testimonials with invented names are illegal in many
+ * of your target markets (e.g. FTC rules in the US) and easy to spot. The
+ * homepage testimonial section stays hidden while this list is empty.
+ *
+ * Format: { _id: "testimonial-1", quote: "…", name: "Full Name", role: "Company · Country", order: 1 },
+ */
+export const FALLBACK_TESTIMONIALS: Testimonial[] = [];
+
+// export const FALLBACK_TESTIMONIALS: Testimonial[] = [
+//   { _id: "testimonial-reinhardt", quote: "Consistent quality across three years of container orders. Their private-label program made our retail launch effortless.", name: "M. Reinhardt", role: "Wellness Importer · Germany", order: 1 },
+//   { _id: "testimonial-coleman", quote: "Fast quotes, honest lead times, and packaging that survives the ocean. Exactly what a distributor needs.", name: "Sarah Coleman", role: "Distributor · USA", order: 2 },
+//   { _id: "testimonial-tanaka", quote: "From sampling to delivery, the export team handled everything. Documentation was flawless.", name: "Y. Tanaka", role: "Retail Chain · Japan", order: 3 },
+// ];

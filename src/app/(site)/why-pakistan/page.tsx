@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/PageHero";
 import { LinkButton } from "@/components/ui/Button";
-import { WHY_PAKISTAN } from "@/lib/constants";
+import { WHY_PAKISTAN, WHY_PAKISTAN_PAGE } from "@/lib/copy";
 
 export const metadata: Metadata = {
-  title: "Why Pakistan",
-  description: "Why serious buyers source Himalayan salt from Pakistan — source proximity, skilled labour, trade access and port logistics.",
+  title: WHY_PAKISTAN_PAGE.metaTitle,
+  description: WHY_PAKISTAN_PAGE.metaDescription,
   alternates: { canonical: "/why-pakistan" },
 };
 
@@ -14,7 +14,7 @@ export default function WhyPakistanPage() {
     <main>
       <PageHero
         crumbs={[{ name: "Home", href: "/" }, { name: "Why Pakistan" }]}
-        title="Why serious buyers source Himalayan salt from Pakistan"
+        title={WHY_PAKISTAN_PAGE.heroTitle}
         maxWidth="max-w-[680px]"
       />
 
@@ -28,7 +28,7 @@ export default function WhyPakistanPage() {
           ))}
         </div>
         <div className="mt-14 text-center">
-          <LinkButton href="/quote">Get a quote from source &rarr;</LinkButton>
+          <LinkButton href="/quote">{WHY_PAKISTAN_PAGE.cta}</LinkButton>
         </div>
       </section>
     </main>

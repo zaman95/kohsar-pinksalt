@@ -8,7 +8,7 @@ export function organizationJsonLd() {
     name: COMPANY.name,
     legalName: COMPANY.legalName,
     url: SITE_URL,
-    logo: `${SITE_URL}/logo.png`,
+    logo: `${SITE_URL}/opengraph-image`,
     foundingDate: String(COMPANY.founded),
     email: COMPANY.email,
     telephone: COMPANY.phone,
@@ -81,10 +81,12 @@ export function articleJsonLd(post: BlogPost, path: string) {
 }
 
 export function JsonLdScript({ data }: { data: object }) {
+  // Escape "<" so CMS-sourced strings can never close the script tag and
+  // inject markup into the page.
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(data).replace(/</g, "\\u003c") }}
     />
   );
 }

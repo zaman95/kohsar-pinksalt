@@ -3,6 +3,7 @@ import { Archivo, Manrope } from "next/font/google";
 import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
 import { MicrosoftClarity } from "@/components/analytics/MicrosoftClarity";
 import { SITE_URL } from "@/lib/constants";
+import { SITE } from "@/lib/copy";
 import "./globals.css";
 
 const archivo = Archivo({
@@ -22,11 +23,10 @@ const manrope = Manrope({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "Kohsar Saltworks — Wholesale Himalayan Pink Salt Manufacturer & Exporter",
-    template: "%s — Kohsar Saltworks",
+    default: SITE.metaTitle,
+    template: SITE.metaTitleTemplate,
   },
-  description:
-    "Manufacturer and exporter of Himalayan pink salt lamps, tiles, edible salt, bath salt and private-label products. Bulk wholesale, OEM and container-ready export from Pakistan to 20+ countries.",
+  description: SITE.metaDescription,
   verification: {
     google: process.env.NEXT_PUBLIC_GSC_VERIFICATION || undefined,
   },

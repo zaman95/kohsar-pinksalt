@@ -2,13 +2,14 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHero } from "@/components/PageHero";
 import { SanityImage } from "@/components/SanityImage";
+import { BLOG } from "@/lib/copy";
 import { getPosts } from "@/lib/queries";
 import { BLOG_STOCK } from "@/lib/stockImages";
 import { formatMonthYear } from "@/lib/utils";
 
 export const metadata: Metadata = {
-  title: "Blog — Import Guides & Wholesale Insights",
-  description: "Import guides and wholesale insights for buyers sourcing Himalayan pink salt products — MOQs, container loading, private label and more.",
+  title: BLOG.metaTitle,
+  description: BLOG.metaDescription,
   alternates: { canonical: "/blog" },
 };
 
@@ -17,7 +18,7 @@ export default async function BlogPage() {
 
   return (
     <main>
-      <PageHero crumbs={[{ name: "Home", href: "/" }, { name: "Blog" }]} title="Import guides & wholesale insights" maxWidth="max-w-none" />
+      <PageHero crumbs={[{ name: "Home", href: "/" }, { name: "Blog" }]} title={BLOG.heroTitle} maxWidth="max-w-none" />
 
       <section className="mx-auto max-w-[1240px] px-[18px] py-14 pb-20 sm:px-8">
         <div className="grid grid-cols-1 gap-6.5 sm:grid-cols-2 lg:grid-cols-3">
@@ -45,7 +46,7 @@ export default async function BlogPage() {
             </Link>
           ))}
         </div>
-        {posts.length === 0 && <p className="text-muted">No posts published yet — check back soon.</p>}
+        {posts.length === 0 && <p className="text-muted">{BLOG.empty}</p>}
       </section>
     </main>
   );

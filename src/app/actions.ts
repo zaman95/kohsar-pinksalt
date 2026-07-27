@@ -1,5 +1,6 @@
 "use server";
 
+import { headers } from "next/headers";
 import { getResend } from "@/lib/resend";
 import { contactFormSchema, quoteFormSchema, type ContactFormValues, type QuoteFormValues } from "@/lib/validations";
 
@@ -7,6 +8,25 @@ export type ActionResult = { success: true } | { success: false; error: string }
 
 const FROM = process.env.RESEND_FROM_EMAIL || "Kohsar Saltworks <onboarding@resend.dev>";
 const TO = process.env.SALES_INBOX_EMAIL || "export@kohsarsaltworks.com";
+
+// Basic per-IP rate limit: max 5 submissions per 10 minutes. In-memory, so
+// each serverless instance keeps its own counter — not bulletproof, but it
+// stops naive spam loops without any extra infrastructure.
+const RATE_LIMIT = 5;
+const RATE_WINDOW_MS = 10 * 60 * 1000;
+const submissionLog = new Map<string, number[]>();
+
+async function isRateLimited(): Promise<boolean> {
+  const h = await headers();
+  const ip = h.get("x-forwarded-for")?.split(",")[0]?.trim() || h.get("x-real-ip") || "unknown";
+  const now = Date.now();
+  const recent = (submissionLog.get(ip) ?? []).filter((t) => now - t < RATE_WINDOW_MS);
+  if (recent.length >= RATE_LIMIT) return true;
+  recent.push(now);
+  submissionLog.set(ip, recent);
+  if (submissionLog.size > 10_000) submissionLog.clear(); // cap memory
+  return false;
+}
 
 function escapeHtml(value: string) {
   return value.replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c] as string));
@@ -18,6 +38,8 @@ function row(label: string, value?: string) {
     label
   )}</td><td style="padding:6px 12px;font-size:14px;color:#1F2937">${escapeHtml(value)}</td></tr>`;
 }
+
+const NOT_CONFIGURED_ERROR = `Our inquiry form is temporarily unavailable. Please email us directly at ${TO} — we reply within one business day.`;
 
 export async function submitQuoteForm(values: QuoteFormValues): Promise<ActionResult> {
   const parsed = quoteFormSchema.safeParse(values);
@@ -32,8 +54,15 @@ export async function submitQuoteForm(values: QuoteFormValues): Promise<ActionRe
   }
 
   if (!process.env.RESEND_API_KEY) {
-    console.warn("RESEND_API_KEY is not set — quote form submission was not emailed.", data);
-    return { success: true };
+    // TODO: RESEND_API_KEY
+    // Never pretend a lead was delivered when it wasn't — tell the buyer to
+    // email directly instead of silently dropping their inquiry.
+    console.error(`Quote form submission from ${data.companyName} could not be emailed: RESEND_API_KEY is not set.`);
+    return { success: false, error: NOT_CONFIGURED_ERROR };
+  }
+
+  if (await isRateLimited()) {
+    return { success: false, error: "Too many submissions from your network right now. Please try again in a few minutes or email us directly." };
   }
 
   try {
@@ -79,8 +108,12 @@ export async function submitContactForm(values: ContactFormValues): Promise<Acti
   }
 
   if (!process.env.RESEND_API_KEY) {
-    console.warn("RESEND_API_KEY is not set — contact form submission was not emailed.", data);
-    return { success: true };
+    console.error(`Contact form submission from ${data.name} could not be emailed: RESEND_API_KEY is not set.`);
+    return { success: false, error: NOT_CONFIGURED_ERROR };
+  }
+
+  if (await isRateLimited()) {
+    return { success: false, error: "Too many submissions from your network right now. Please try again in a few minutes or email us directly." };
   }
 
   try {
