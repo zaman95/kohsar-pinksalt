@@ -32,13 +32,13 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
 
   const related = await getRelatedProducts(slug, 4);
   const path = `/products/${slug}`;
+  const variants = product.variants ?? [];
 
   const specs = [
     ...PRODUCT_DETAIL.specs.slice(0, 1),
     { k: PRODUCT_DETAIL.sizesLabel, v: product.sizes?.join(", ") || PRODUCT_DETAIL.sizesFallback },
     ...PRODUCT_DETAIL.specs.slice(1),
   ];
-  const ship = [{ k: "MOQ", v: product.moq ?? "On request" }, ...PRODUCT_DETAIL.ship];
 
   return (
     <main className="mx-auto max-w-[1240px] px-[18px] py-8 sm:px-8 lg:pb-[90px]">
@@ -62,16 +62,13 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
           <p className="mt-4 text-[16.5px] text-muted">{product.description}</p>
 
           <div className="mt-6 rounded-[18px] border border-border-3 bg-white p-6">
-            <div className="flex items-baseline justify-between">
-              <span className="text-[13px] font-semibold text-brown-lighter">{PRODUCT_DETAIL.bulkPricingLabel}</span>
-              <span className="font-heading text-2xl font-extrabold text-ink">{product.priceRange || PRODUCT_DETAIL.askForQuote}</span>
-            </div>
-            <div className="mt-1.5 text-[13px] text-muted-2">{PRODUCT_DETAIL.priceNote}</div>
+            <div className="font-heading text-lg font-extrabold text-ink">{PRODUCT_DETAIL.pricingTitle}</div>
+            <div className="mt-1.5 text-[13.5px] text-muted-2">{PRODUCT_DETAIL.pricingNote}</div>
             <div className="mt-[18px] flex gap-3">
-              <LinkButton href="/quote" className="flex-1 justify-center !py-[15px]">
+              <LinkButton href={`/quote?type=quote&product=${product.slug}`} className="flex-1 justify-center !py-[15px]">
                 {PRODUCT_DETAIL.requestQuote}
               </LinkButton>
-              <LinkButton href="/quote" variant="pink" className="flex-1 justify-center !py-[15px]">
+              <LinkButton href={`/quote?type=sample&product=${product.slug}`} variant="pink" className="flex-1 justify-center !py-[15px]">
                 {PRODUCT_DETAIL.requestSample}
               </LinkButton>
             </div>
@@ -79,8 +76,8 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
 
           <div className="mt-5 grid grid-cols-2 gap-3.5">
             {[
-              { k: "MOQ", v: product.moq },
               { k: "Lead time", v: PRODUCT_DETAIL.quickFacts.leadTime },
+              { k: "Samples", v: PRODUCT_DETAIL.quickFacts.samples },
               { k: "Packaging", v: PRODUCT_DETAIL.quickFacts.packaging },
               { k: "Private label", v: PRODUCT_DETAIL.quickFacts.privateLabel },
             ].map((q) => (
@@ -93,7 +90,35 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
         </div>
       </div>
 
-      <ProductTabs specs={specs} pack={[...PRODUCT_DETAIL.pack]} ship={ship} />
+      {/* DESIGN / MODEL VARIANTS */}
+      {variants.length > 0 && (
+        <section className="mt-16">
+          <h2 className="font-heading text-[26px] font-extrabold tracking-tight">{PRODUCT_DETAIL.variantsTitle}</h2>
+          <p className="mt-2 max-w-[640px] text-[14.5px] text-muted-2">{PRODUCT_DETAIL.variantsNote}</p>
+          <div className="mt-6 overflow-hidden overflow-x-auto rounded-[18px] border border-border-3 bg-white">
+            <table className="w-full min-w-[520px] border-collapse text-left">
+              <thead>
+                <tr className="bg-ink text-xs font-bold text-bg">
+                  <th className="px-6 py-4 font-bold whitespace-nowrap">{PRODUCT_DETAIL.variantCols.model}</th>
+                  <th className="px-6 py-4 font-bold">{PRODUCT_DETAIL.variantCols.name}</th>
+                  <th className="px-6 py-4 font-bold">{PRODUCT_DETAIL.variantCols.note}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {variants.map((v) => (
+                  <tr key={v.model} className="border-b border-slot text-[14.5px] last:border-none">
+                    <td className="px-6 py-4 font-mono text-[13.5px] font-bold whitespace-nowrap text-brown">{v.model}</td>
+                    <td className="px-6 py-4 font-semibold">{v.name}</td>
+                    <td className="px-6 py-4 text-muted">{v.note}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </section>
+      )}
+
+      <ProductTabs specs={specs} pack={[...PRODUCT_DETAIL.pack]} ship={[...PRODUCT_DETAIL.ship]} />
 
       {related.length > 0 && (
         <div className="mt-16">

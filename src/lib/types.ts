@@ -14,15 +14,21 @@ export type Category = {
   order?: number;
 };
 
+/** A design/shape variant of a product, e.g. "Pyramid" under Crafted Lamps. */
+export type ProductVariant = {
+  model: string;
+  name: string;
+  note?: string;
+};
+
 export type Product = {
   _id: string;
   name: string;
   slug: string;
   category?: { name: string; slug: string } | null;
   tag?: string;
-  moq: string;
-  priceRange?: string;
   sizes?: string[];
+  variants?: ProductVariant[];
   description?: string;
   images?: SanityImageRef[];
   featured?: boolean;

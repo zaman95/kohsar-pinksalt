@@ -26,12 +26,18 @@ export const FALLBACK_CATEGORIES: Category[] = [
   { _id: "category-tile-cooking", name: "Salt Tiles & Bricks", slug: "tile-cooking", blurb: "Cooking tiles, wall & sauna bricks", order: 6 },
   { _id: "category-edible-fine", name: "Edible / Cooking Salt", slug: "edible-fine", blurb: "Fine, coarse & granulated cuts", order: 7 },
   { _id: "category-kitchenware", name: "Kitchenware", slug: "kitchenware", blurb: "Shot glasses, wine glasses, mortar & pestle, framed cooking tiles", order: 8 },
-  { _id: "category-bath-crystal", name: "Bath & Spa Salt", slug: "bath-crystal", blurb: "Bath crystals, massage stones", order: 9 },
+  { _id: "category-bath-crystal", name: "Bath & Spa Salt", slug: "bath-crystal", blurb: "Bath crystals, Massage stones, fine granules & blends", order: 9 },
   { _id: "category-lick-block", name: "Animal Salt Licks", slug: "lick-block", blurb: "Livestock mineral lick blocks", order: 10 },
+  // { _id: "category-therapy", name: "Salt Therapy Products", slug: "therapy", blurb: "Massage stones, inhalers & detox blocks", order: 11 },
 ];
 
 const CATEGORY_BY_SLUG = new Map(FALLBACK_CATEGORIES.map((c) => [c.slug, { name: c.name, slug: c.slug }]));
 
+/**
+ * B2B catalog: no prices or MOQs are published — pricing is quoted per
+ * requirement (volume, spec, packaging, Incoterm). Each product lists its
+ * design/shape variants with a model code buyers can reference in quotes.
+ */
 export const FALLBACK_PRODUCTS: Product[] = [
   {
     _id: "product-lamp-natural",
@@ -39,53 +45,72 @@ export const FALLBACK_PRODUCTS: Product[] = [
     slug: "lamp-natural",
     category: CATEGORY_BY_SLUG.get("lamp-natural"),
     tag: "Best Seller",
-    moq: "500 pcs",
-    priceRange: "$2.20–4.80 / pc",
     sizes: ["1–2kg", "2–3kg", "3–5kg", "5–7kg", "7–10kg"],
+    variants: [
+      { model: "KS-NL-01", name: "1-2kg Natural Shape Salt Lamp", note: "Hand-selected pink crystal, wood base" },
+      { model: "KS-NL-02", name: "3-5kg Natural Shape Salt Lamp", note: "Hand-selected pink crystal, wood base" },
+      { model: "KS-NL-03", name: "5-7kg Natural Shape Salt Lamp", note: "Hand-selected pink crystal, wood base" },
+      { model: "KS-NL-04", name: "7-10kg Natural Shape Salt Lamp", note: "Hand-selected pink crystal, wood base" },
+      { model: "KS-NL-04", name: "Custom Size Natural Shape Salt Lamp", note: "Any custom size" },
+    ],
     description:
-      "Hand-selected natural-form crystal lamp on a mango-wood base, wired to your market standard (EU/US/UK plug, dimmer optional). Our most-ordered SKU across every export region.",
+      "Hand-selected natural-form crystal lamp on a mango-wood base, wired to your market standard (EU/US/UK plug, dimmer optional). Our most-ordered line across export regions.",
     featured: true,
     order: 1,
   },
   {
     _id: "product-lamp-crafted",
-    name: "Geometric Cut Lamp (Cube / Pyramid / Sphere)",
+    name: "Crafted & Geometric Salt Lamp",
     slug: "lamp-crafted",
     category: CATEGORY_BY_SLUG.get("lamp-crafted"),
     tag: "New",
-    moq: "500 pcs",
-    priceRange: "$3.40–6.20 / pc",
     sizes: ["2–3kg", "3–5kg", "5–7kg"],
+    variants: [
+      { model: "KS-CL-01", name: "Cube", note: "Polished faces, sharp edges" },
+      { model: "KS-CL-02", name: "Pyramid", note: "Four-sided, polished finish" },
+      { model: "KS-CL-03", name: "Sphere", note: "On wooden or salt base" },
+      { model: "KS-CL-04", name: "Egg / Oval", note: "Smooth polished profile" },
+      { model: "KS-CL-05", name: "Bowl of Fire", note: "Carved bowl filled with crystal chunks" },
+      { model: "KS-CL-06", name: "Heart", note: "Popular gifting cut" },
+      { model: "KS-CL-07", name: "Cylinder / Tower", note: "Tall profile, hotel & spa favourite" },
+    ],
     description:
-      "Precision diamond-cut lamp in cube, pyramid or sphere profile with a polished finish — a strong margin line for design-led retail and gifting ranges.",
+      "Precision-cut lamps in polished geometric profiles — a strong margin line for design-led retail and gifting ranges. Custom shapes can be carved to your drawing.",
     featured: true,
     order: 2,
   },
   {
     _id: "product-lamp-basket",
-    name: "Wooden Basket Salt Lamp",
+    name: "Basket Salt Lamp",
     slug: "lamp-basket",
     category: CATEGORY_BY_SLUG.get("lamp-basket"),
     tag: "Gifting",
-    moq: "300 pcs",
-    priceRange: "$4.80–8.50 / pc",
     sizes: ["2–3kg", "3–5kg"],
+    variants: [
+      { model: "KS-BL-01", name: "Iron Bowl Basket", note: "Black powder-coated bowl, crystal chunks" },
+      { model: "KS-BL-02", name: "Iron Cage Basket", note: "Openwork cage silhouette" },
+      { model: "KS-BL-03", name: "Wooden Bowl Basket", note: "Mango-wood bowl, natural chunks" },
+      { model: "KS-BL-04", name: "Square Wooden Basket", note: "Slatted square frame" },
+    ],
     description:
-      "Natural crystal chunks set in a mango-wood or iron basket frame — a premium gifting SKU with strong sell-through in home & wellness retail.",
+      "Natural crystal chunks set in iron or mango-wood basket frames — a premium gifting line with strong sell-through in home & wellness retail.",
     featured: true,
     order: 3,
   },
   {
     _id: "product-lamp-usb",
-    name: "USB Mini Lamp / Plug-in Night Light",
+    name: "USB Mini Lamp / Night Light",
     slug: "lamp-usb",
     category: CATEGORY_BY_SLUG.get("lamp-usb"),
     tag: "New",
-    moq: "1,000 pcs",
-    priceRange: "$1.60–2.90 / pc",
     sizes: ["Mini (150–300g)", "Plug-in night light"],
+    variants: [
+      { model: "KS-UL-01", name: "USB Mini Natural", note: "Warm LED, USB powered" },
+      { model: "KS-UL-02", name: "USB Sphere", note: "Polished mini sphere" },
+      { model: "KS-UL-03", name: "USB Pyramid", note: "Polished mini pyramid" },
+    ],
     description:
-      "Compact USB-powered or plug-in mini lamp with warm LED — ideal for retail impulse counters, gift sets and hospitality amenity lines.",
+      "Compact USB-powered or plug-in mini lamps with warm LED — ideal for retail impulse counters, gift sets and hospitality amenity lines.",
     featured: true,
     order: 4,
   },
@@ -95,35 +120,49 @@ export const FALLBACK_PRODUCTS: Product[] = [
     slug: "holder-tealight",
     category: CATEGORY_BY_SLUG.get("holder-tealight"),
     tag: "Gifting",
-    moq: "1,000 pcs",
-    priceRange: "$0.90–1.80 / pc",
     sizes: ["Single tealight", "Multi-hole", "Heart shape"],
+    variants: [
+      { model: "KS-CH-01", name: "Natural Single", note: "Raw form, single tealight" },
+      { model: "KS-CH-02", name: "Two-Hole", note: "Natural or polished" },
+      { model: "KS-CH-03", name: "Three-Hole", note: "Centrepiece format" },
+      { model: "KS-CH-04", name: "Heart", note: "Carved heart profile" },
+      { model: "KS-CH-05", name: "Round Polished", note: "CNC-finished, uniform sets" },
+    ],
     description:
       "Single and multi-hole tealight holders, natural or geometric cut, in carved or CNC-finished form — a fast-moving spa and gift-line staple.",
     order: 5,
   },
   {
     _id: "product-tile-cooking",
-    name: "Salt Cooking Tile",
+    name: "Salt Tiles & Bricks",
     slug: "tile-cooking",
     category: CATEGORY_BY_SLUG.get("tile-cooking"),
     tag: "Culinary",
-    moq: "1,000 pcs",
-    priceRange: "$2.60–4.20 / pc",
     sizes: ["8×8in", "12×8in", "custom to spec"],
-    description: "Food-grade searing and serving tile in standard and custom sizes, edge-finished and heat-tested for direct grill and oven use.",
+    variants: [
+      { model: "KS-TB-01", name: "Cooking / Searing Tile", note: "Heat-tested for grill & oven" },
+      { model: "KS-TB-02", name: "Round Serving Tile", note: "Edge-finished presentation round" },
+      { model: "KS-TB-03", name: "Sauna / Wall Brick", note: "Uniform bricks for salt rooms" },
+      { model: "KS-TB-04", name: "Custom-Cut Tile", note: "Cut to your drawing & tolerance" },
+    ],
+    description: "Food-grade searing and serving tiles plus wall and sauna bricks, edge-finished and cut to standard or custom dimensions.",
     order: 6,
   },
   {
     _id: "product-edible-fine",
-    name: "Edible Fine Salt · 84+ Minerals",
+    name: "Edible Pink Salt · 84+ Minerals",
     slug: "edible-fine",
     category: CATEGORY_BY_SLUG.get("edible-fine"),
     tag: "Food Grade",
-    moq: "5,000 kg",
-    priceRange: "$0.25–0.50 / kg",
-    sizes: ["Fine", "Coarse", "Granulated"],
-    description: "Food-grade pink salt in fine, coarse and granulated cuts. Supplied as bulk bags or retail-ready pouches, private-label ready.",
+    sizes: ["Fine", "Coarse", "Granulated", "Chunks"],
+    variants: [
+      { model: "KS-ES-01", name: "Fine", note: "Table & processing grade" },
+      { model: "KS-ES-02", name: "Coarse", note: "Grinder & mill refills" },
+      { model: "KS-ES-03", name: "Granulate", note: "Between fine and coarse" },
+      { model: "KS-ES-04", name: "Chunks / Rock", note: "For grating & display jars" },
+    ],
+    description:
+      "Food-grade pink salt in fine, coarse, granulated and chunk cuts, in light pink to dark pink colour grades. Supplied as bulk bags or retail-ready pouches, private-label ready.",
     order: 7,
   },
   {
@@ -132,24 +171,34 @@ export const FALLBACK_PRODUCTS: Product[] = [
     slug: "kitchenware",
     category: CATEGORY_BY_SLUG.get("kitchenware"),
     tag: "Culinary",
-    moq: "300 pcs",
-    priceRange: "$1.80–8.50 / pc",
     sizes: ["Shot / wine glass", "Mortar & pestle", "Framed cooking tile", "Urn / plate"],
+    variants: [
+      { model: "KS-KW-01", name: "Shot Glass Set", note: "Tequila sets, retail-boxed" },
+      { model: "KS-KW-02", name: "Wine Glass", note: "Carved single piece" },
+      { model: "KS-KW-03", name: "Mortar & Pestle", note: "With wooden pestle" },
+      { model: "KS-KW-04", name: "Serving Plate / Platter", note: "Round & rectangular" },
+      { model: "KS-KW-05", name: "Framed Cooking Tile", note: "Wooden, stainless or iron frame" },
+      { model: "KS-KW-06", name: "Salt Urn", note: "Storage & display piece" },
+    ],
     description:
-      "Food-grade Himalayan salt kitchenware — tequila shot sets, wine glasses, mortar & pestle, urns, plates and cooking tiles in wooden, stainless or iron frames. Custom sizes and private labels available on demand.",
+      "Food-grade Himalayan salt kitchenware — shot sets, wine glasses, mortar & pestle, urns, plates and framed cooking tiles. Custom pieces carved to spec, private label available.",
     featured: true,
     order: 8,
   },
   {
     _id: "product-bath-crystal",
-    name: "Spa Bath Salt Crystals",
+    name: "Bath & Spa Salt",
     slug: "bath-crystal",
     category: CATEGORY_BY_SLUG.get("bath-crystal"),
     tag: "Wellness",
-    moq: "3,000 kg",
-    priceRange: "$0.35–0.70 / kg",
     sizes: ["Coarse crystal", "Fine granule", "Scented blend"],
-    description: "Graded bath crystals, optionally scented and blended. Supplied in retail jars, refill sacks or bulk supply for private label.",
+    variants: [
+      { model: "KS-BS-01", name: "Coarse Bath Crystals", note: "Graded natural crystals" },
+      { model: "KS-BS-02", name: "Fine Bath Granules", note: "Fast-dissolving soak grade" },
+      { model: "KS-BS-03", name: "Scented Blend", note: "Essential-oil blends to your brief" },
+      { model: "KS-BS-04", name: "Retail Jar / Pouch Pack", note: "Filled & labelled to your brand" },
+    ],
+    description: "Graded bath crystals and granules, optionally scented and blended. Supplied in retail jars, refill sacks or bulk supply for private label.",
     order: 9,
   },
   {
@@ -158,12 +207,33 @@ export const FALLBACK_PRODUCTS: Product[] = [
     slug: "lick-block",
     category: CATEGORY_BY_SLUG.get("lick-block"),
     tag: "Agri",
-    moq: "10,000 kg",
-    priceRange: "$0.15–0.30 / kg",
-    sizes: ["1kg", "2kg", "5kg", "with/without rope"],
+    sizes: ["1kg", "2kg", "5kg"],
+    variants: [
+      { model: "KS-LB-01", name: "Block with Rope", note: "Drilled & roped for hanging" },
+      { model: "KS-LB-02", name: "Block without Rope", note: "Feeder & trough format" },
+      // { model: "KS-LB-03", name: "Compressed Mineral Block", note: "Pressed, uniform weight" },
+      { model: "KS-LB-04", name: "Custom Shape Block", note: "Cut to distributor spec" },
+    ],
     description: "Natural mineral lick blocks for cattle and equine, with or without rope, in standard block weights for agricultural distributors.",
     order: 10,
   },
+  // {
+  //   _id: "product-therapy",
+  //   name: "Salt Therapy & Wellness Products",
+  //   slug: "therapy",
+  //   category: CATEGORY_BY_SLUG.get("therapy"),
+  //   tag: "Wellness",
+  //   sizes: ["Stone sets", "Single units", "Bulk refills"],
+  //   variants: [
+  //     { model: "KS-TP-01", name: "Massage Stones", note: "Polished pairs & sets" },
+  //     { model: "KS-TP-02", name: "Salt Inhaler Refill Crystals", note: "Food-grade crystal fill" },
+  //     { model: "KS-TP-03", name: "Foot Detox Block", note: "Contoured standing block" },
+  //     { model: "KS-TP-04", name: "Therapy Pillow / Pad", note: "Warmable crystal-filled pad" },
+  //   ],
+  //   description:
+  //     "Spa and wellness line — polished massage stones, inhaler refill crystals, detox blocks and therapy pads for wellness retailers and spa suppliers.",
+  //   order: 11,
+  // },
 ];
 
 export const FALLBACK_POSTS: BlogPost[] = [
@@ -254,13 +324,13 @@ export const FALLBACK_POSTS: BlogPost[] = [
 ];
 
 export const FALLBACK_FAQS: Faq[] = [
-  { _id: "faq-q1", category: "Ordering", question: "What is your minimum order quantity (MOQ)?", answer: "MOQ varies by product — typically 300–1,000 pieces for lamps and décor, or 3,000–10,000 kg for bulk salt. Custom and private-label orders may have higher minimums; we'll confirm exact figures on your quote.", order: 1 },
+  { _id: "faq-q1", category: "Ordering", question: "What is your minimum order quantity (MOQ)?", answer: "Minimums depend on the product, size mix and packaging, so we don't publish fixed MOQs. Share your target quantity in the quote form and we'll confirm minimums with your offer — trial orders and mixed pallets are welcome for first-time buyers.", order: 1 },
   { _id: "faq-q2", category: "Ordering", question: "Can I order a sample before committing to a full container?", answer: "Yes. We offer paid or freight-collect samples for every product line so you can verify quality before placing a bulk order.", order: 2 },
   { _id: "faq-q3", category: "Payment", question: "What payment terms do you accept?", answer: "T/T (30% deposit, 70% before shipment) is standard. Established buyers with repeat orders may qualify for L/C or open-account terms.", order: 3 },
   { _id: "faq-q4", category: "Shipping", question: "Which Incoterms do you support?", answer: "FOB Karachi is most common; we also quote CIF, and CFR.", order: 4 },
   { _id: "faq-q5", category: "Shipping", question: "How long does production and shipping take?", answer: "Typical lead time is 18–28 days after sample and PI approval, plus sea transit time to your port (varies by destination).", order: 5 },
   { _id: "faq-q6", category: "Private Label", question: "Do you offer private label and custom packaging?", answer: "Yes — logo engraving, custom retail boxes, branded cartons and compliance labelling are all available. See our OEM / Private Label page for the full workflow.", order: 6 },
-  { _id: "faq-q7", category: "Private Label", question: "Is there a minimum order for private label programs?", answer: "Private label programs typically start at 1,000–2,000 units per SKU to justify custom packaging tooling and print runs.", order: 7 },
+  { _id: "faq-q7", category: "Private Label", question: "Is there a minimum order for private label programs?", answer: "Private-label minimums depend on the packaging format and print run — gift-box-only branding starts lower than fully custom cartons. We'll confirm the exact minimum with your quote.", order: 7 },
   { _id: "faq-q8", category: "Documentation", question: "What export documents do you provide?", answer: "Commercial invoice, packing list, certificate of origin, phytosanitary certificate and HS code classification are included with every shipment.", order: 8 },
 ];
 

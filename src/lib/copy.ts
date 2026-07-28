@@ -56,6 +56,15 @@ export const FOOTER = {
   sitemapLabel: "Sitemap",
 };
 
+// TODO(owner): replace with your real profile URLs (a LinkedIn company page
+// is the single most-checked B2B credibility signal). Remove any entry you
+// don't maintain — a dead social link hurts more than no link.
+export const SOCIALS: { label: "LinkedIn" | "Instagram" | "Facebook"; href: string }[] = [
+  { label: "LinkedIn", href: "https://www.linkedin.com/company/kohsar-saltworks" },
+  { label: "Instagram", href: "https://www.instagram.com/kohsarsaltworks" },
+  { label: "Facebook", href: "https://www.facebook.com/kohsarsaltworks" },
+];
+
 export const FOOTER_COMPANY: NavItem[] = [
   { label: "About Us", href: "/about" },
   { label: "Manufacturing Facility", href: "/facility" },
@@ -290,9 +299,9 @@ export const ABOUT = {
 export const PRODUCTS = {
   metaTitle: "Product Catalog",
   metaDescription:
-    "Wholesale Himalayan pink salt across ten categories — salt lamps, tiles, kitchenware, edible salt, bath salt and more. Every product available for private label and bulk container orders.",
+    "Wholesale Himalayan pink salt — salt lamps, tiles, kitchenware, edible salt, bath salt, therapy products and more. Every product available for private label and bulk container orders.",
   title: "Product Catalog",
-  lead: "Wholesale Himalayan pink salt across ten categories. Every product available for private label and bulk container orders.",
+  lead: "Wholesale Himalayan pink salt across every category we manufacture. Each product is available for private label and bulk container orders — pricing is quoted per requirement.",
   filterAll: "All",
   emptyCategory: "No products in this category yet — check back soon.",
   customCta: {
@@ -304,16 +313,21 @@ export const PRODUCTS = {
 
 // ── Page: Product detail (/products/[slug]) ────────────────────────────────
 export const PRODUCT_DETAIL = {
-  bulkPricingLabel: "Bulk pricing",
-  askForQuote: "Ask for quote",
-  priceNote: "Final price depends on volume, spec & Incoterm. Request a quote for a formal offer.",
+  // B2B: no public prices — the panel explains pricing is quoted per requirement.
+  pricingTitle: "Wholesale pricing on request",
+  pricingNote:
+    "As a manufacturer we price each order individually — based on volume, sizes, packaging and Incoterm. Send your requirement and receive a formal offer within one business day.",
   requestQuote: "Request Quote",
   requestSample: "Request Sample",
   relatedTitle: "Related products",
+  variantsTitle: "Designs & models",
+  variantsNote: "Reference the model code in your inquiry. All designs are available in the sizes listed under Specifications.",
+  variantCols: { model: "Model code", name: "Design / variant", note: "Notes" },
   quickFacts: {
     leadTime: "18–28 days",
     packaging: "Bulk / retail / custom",
     privateLabel: "Available",
+    samples: "Paid / freight-collect",
   },
   specs: [
     { k: "Material", v: "100% natural Himalayan pink salt (Khewra range)" },
@@ -333,12 +347,20 @@ export const PRODUCT_DETAIL = {
     { k: "Labelling", v: "Multilingual, compliant with destination market" },
   ],
   ship: [
+    { k: "Order quantity", v: "Minimums confirmed with your quote — trial orders welcome" },
     { k: "Container load", v: "20ft ≈ 22–24 MT · 40ft ≈ 26–28 MT (product dependent)" },
     { k: "Lead time", v: "18–28 days after sample & PI approval" },
     { k: "Incoterms", v: "FOB Karachi, CIF, CFR" },
     { k: "Freight", v: "Sea (LCL/FCL) & air freight arranged" },
     { k: "Documents", v: "CI, packing list, CoO, phytosanitary, HS code included" },
   ],
+};
+
+// ── Product cards (lists & homepage) ───────────────────────────────────────
+export const PRODUCT_CARD = {
+  designsLabel: "designs",
+  madeToSpec: "Made to spec",
+  details: "Details →",
 };
 
 // ── Page: OEM / Private Label (/oem) ───────────────────────────────────────
@@ -350,8 +372,8 @@ export const OEM = {
   heroImageAlt: "Branded retail packaging lineup",
   howEyebrow: "How it works",
   packagingEyebrow: "Packaging options",
-  moqTitle: "Typical private-label MOQ: 1,000–2,000 units / SKU",
-  moqLead: "Covers custom tooling and print run cost. Ask about lower minimums for gift-box-only branding.",
+  moqTitle: "Minimums that scale with your packaging",
+  moqLead: "Private-label minimums depend on the packaging format and print run — gift-box-only branding starts lower than fully custom cartons. We'll confirm exact minimums with your quote.",
   cta: "Start a private-label inquiry →",
 };
 
@@ -435,9 +457,9 @@ export const SUSTAINABILITY_PAGE = {
 // ── Page: Catalog (/catalog) ───────────────────────────────────────────────
 export const CATALOG = {
   metaTitle: "Catalog Download",
-  metaDescription: "Get our full wholesale catalog — specs, MOQs and packaging options across all product categories.",
+  metaDescription: "Get our full wholesale catalog — designs, specifications and packaging options across all product categories.",
   title: "Get our full wholesale catalog",
-  lead: "Full specs, MOQs and packaging options across all ten categories — updated quarterly.",
+  lead: "Designs, specifications and packaging options across all categories — updated quarterly.",
   coverAlt: "Catalog cover artwork",
   // TODO(owner): when you have a real catalog PDF, put it in /public (e.g.
   // /catalog.pdf) and set pdfUrl: "/catalog.pdf" — the button below becomes
@@ -482,14 +504,24 @@ export const CONTACT = {
 };
 
 // ── Page: Quote (/quote) ───────────────────────────────────────────────────
+// Two intents share this one page/form (?type=quote|sample) instead of two
+// separate forms — same email pipeline, adapted copy and fields per intent.
 export const QUOTE = {
   metaTitle: "Request a Wholesale Quote",
   metaDescription:
     "Tell us what you need — pricing, samples and lead times for Himalayan pink salt products, delivered within one business day.",
   title: "Request a Wholesale Quote",
   lead: "Tell us what you need. Our export team replies within one business day with pricing, samples and lead times.",
+  sampleMetaTitle: "Request a Product Sample",
+  sampleMetaDescription: "Evaluate quality before you commit — request a paid or freight-collect sample of any Kohsar Saltworks product.",
+  sampleTitle: "Request a Product Sample",
+  sampleLead: "Evaluate quality before you commit to a bulk order. Tell us where to send it — our export team confirms sample cost and shipping within one business day.",
   asideTitle: "Why buyers choose Kohsar",
   preferToTalk: "Prefer to talk?",
+  productNoteLabel: "Product / model",
+  moreDetailsToggle: "Add shipping & branding details (optional)",
+  shippingAddressLabel: "Shipping address / port *",
+  shippingAddressLabelOptional: "Shipping destination (port)",
 };
 
 // ── Forms (shared) ─────────────────────────────────────────────────────────
@@ -497,10 +529,15 @@ export const FORMS = {
   quoteSuccessTitle: "Inquiry received — thank you.",
   quoteSuccessBody:
     "Our export team has your request and will reply within one business day with pricing, available samples and estimated lead times.",
+  sampleSuccessTitle: "Sample request received — thank you.",
+  sampleSuccessBody:
+    "Our export team will confirm sample cost (if any) and shipping details by email, then dispatch your sample.",
   contactSuccessTitle: "Message sent — thank you.",
   contactSuccessBody: "We'll get back to you within one business day.",
   quoteSubmit: "Submit inquiry →",
   quoteSubmitting: "Submitting…",
+  sampleSubmit: "Request sample →",
+  sampleSubmitting: "Sending…",
   contactSubmit: "Send message →",
   contactSubmitting: "Sending…",
 };

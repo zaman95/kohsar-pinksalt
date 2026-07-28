@@ -65,27 +65,32 @@ export async function submitQuoteForm(values: QuoteFormValues): Promise<ActionRe
     return { success: false, error: "Too many submissions from your network right now. Please try again in a few minutes or email us directly." };
   }
 
+  const isSample = data.inquiryType === "sample";
+
   try {
     await getResend().emails.send({
       from: FROM,
       to: TO,
       replyTo: data.email,
-      subject: `Wholesale quote request — ${data.companyName}`,
+      subject: `${isSample ? "Sample request" : "Wholesale quote request"} — ${data.companyName}`,
       html: `
-        <h2 style="font-family:sans-serif">New wholesale quote request</h2>
+        <div style="display:inline-block;padding:4px 12px;border-radius:999px;font-family:sans-serif;font-size:12px;font-weight:700;color:#fff;background:${
+          isSample ? "#E9B7A5" : "#1F2937"
+        }">${isSample ? "SAMPLE REQUEST" : "WHOLESALE QUOTE"}</div>
+        <h2 style="font-family:sans-serif">${isSample ? "New sample request" : "New wholesale quote request"}</h2>
         <table style="border-collapse:collapse;font-family:sans-serif">
           ${row("Company", data.companyName)}
           ${row("Country", data.country)}
           ${row("Contact name", data.contactName)}
           ${row("Email", data.email)}
-          ${row("Phone", data.phone)}
-          ${row("WhatsApp", data.whatsapp)}
+          ${row("Phone / WhatsApp", data.phone)}
           ${row("Product interest", data.productInterest)}
+          ${row("Product / model", data.productNote)}
           ${row("Estimated quantity", data.quantity)}
           ${row("Packaging", data.packaging)}
           ${row("Private label", data.privateLabel)}
           ${row("Target market", data.targetMarket)}
-          ${row("Destination port", data.destinationPort)}
+          ${row(isSample ? "Shipping address" : "Destination port", data.destinationPort)}
         </table>
         ${data.message ? `<p style="font-family:sans-serif"><b>Message:</b><br>${escapeHtml(data.message)}</p>` : ""}
       `,

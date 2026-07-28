@@ -20,14 +20,29 @@ export const product = defineType({
       to: [{ type: "category" }],
       validation: (r) => r.required(),
     }),
-    defineField({ name: "tag", title: "Badge tag", description: "e.g. Best Seller, New, FDA", type: "string" }),
-    defineField({ name: "moq", title: "MOQ", description: "e.g. 500 pcs, 5,000 kg", type: "string", validation: (r) => r.required() }),
-    defineField({ name: "priceRange", title: "Bulk price range", description: "e.g. $2.20–4.80 / pc", type: "string" }),
+    defineField({ name: "tag", title: "Badge tag", description: "e.g. Best Seller, New, Food Grade", type: "string" }),
     defineField({
       name: "sizes",
-      title: "Available sizes / variants",
+      title: "Available sizes",
       type: "array",
       of: [{ type: "string" }],
+    }),
+    defineField({
+      name: "variants",
+      title: "Designs / models",
+      description: "Shape or design variants of this product, each with a model code buyers can quote against.",
+      type: "array",
+      of: [
+        {
+          type: "object",
+          fields: [
+            defineField({ name: "model", title: "Model code", description: "e.g. KS-CL-02", type: "string", validation: (r) => r.required() }),
+            defineField({ name: "name", title: "Design / variant name", description: "e.g. Pyramid", type: "string", validation: (r) => r.required() }),
+            defineField({ name: "note", title: "Note", description: "Optional short note, e.g. polished finish", type: "string" }),
+          ],
+          preview: { select: { title: "name", subtitle: "model" } },
+        },
+      ],
     }),
     defineField({ name: "description", title: "Description", type: "text", rows: 4 }),
     defineField({
@@ -48,6 +63,6 @@ export const product = defineType({
   ],
   orderings: [{ title: "Sort order", name: "orderAsc", by: [{ field: "order", direction: "asc" }] }],
   preview: {
-    select: { title: "name", subtitle: "moq", media: "images.0" },
+    select: { title: "name", subtitle: "tag", media: "images.0" },
   },
 });

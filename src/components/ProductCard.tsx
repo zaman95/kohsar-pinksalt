@@ -1,9 +1,12 @@
 import Link from "next/link";
 import { SanityImage } from "@/components/SanityImage";
+import { PRODUCT_CARD } from "@/lib/copy";
 import { PRODUCT_STOCK } from "@/lib/stockImages";
 import type { Product } from "@/lib/types";
 
 export function ProductCard({ product, dark = false }: { product: Product; dark?: boolean }) {
+  const variantCount = product.variants?.length ?? 0;
+
   return (
     <Link
       href={`/products/${product.slug}`}
@@ -26,8 +29,10 @@ export function ProductCard({ product, dark = false }: { product: Product; dark?
         <div className="text-xs font-semibold tracking-wide text-brown-light">{product.category?.name}</div>
         <div className="mt-1 font-heading text-[17px] font-bold text-ink">{product.name}</div>
         <div className="mt-2 flex items-center justify-between border-t border-slot pt-2.5 text-[13px]">
-          <span className="text-muted-2">MOQ {product.moq}</span>
-          <span className="font-bold text-ink opacity-0 transition-opacity group-hover:opacity-100">Details &rarr;</span>
+          <span className="text-muted-2">
+            {variantCount > 0 ? `${variantCount} ${PRODUCT_CARD.designsLabel}` : PRODUCT_CARD.madeToSpec}
+          </span>
+          <span className="font-bold text-ink opacity-0 transition-opacity group-hover:opacity-100">{PRODUCT_CARD.details}</span>
         </div>
       </div>
     </Link>

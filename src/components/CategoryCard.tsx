@@ -6,7 +6,7 @@ import type { Category } from "@/lib/types";
 export function CategoryCard({ category }: { category: Category }) {
   return (
     <Link
-      href={`/products?category=${category.slug}`}
+      href={`/products/${category.slug}`}
       className="block overflow-hidden rounded-[18px] border border-border-4 bg-white transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_20px_40px_-22px_rgba(31,41,55,0.35)]"
     >
       <div className="relative h-[150px]">

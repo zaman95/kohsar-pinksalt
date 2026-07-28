@@ -43,14 +43,9 @@ export function productJsonLd(product: Product, path: string) {
     category: product.category?.name,
     url: `${SITE_URL}${path}`,
     brand: { "@type": "Brand", name: COMPANY.name },
-    offers: {
-      "@type": "Offer",
-      priceCurrency: "USD",
-      availability: "https://schema.org/InStock",
-      businessFunction: "https://schema.org/Sell",
-      eligibleQuantity: { "@type": "QuantitativeValue", description: product.moq },
-      seller: { "@type": "Organization", name: COMPANY.name },
-    },
+    manufacturer: { "@type": "Organization", name: COMPANY.name },
+    // B2B: no public pricing — offers are intentionally omitted; buyers
+    // request a quote instead.
   };
 }
 

@@ -2,26 +2,56 @@ import type { Metadata } from "next";
 import { Breadcrumb } from "@/components/Breadcrumb";
 import { QuoteForm } from "@/components/forms/QuoteForm";
 import { QUOTE, QUOTE_TRUST } from "@/lib/copy";
-import { getCategories, getCertifications, getSiteSettings } from "@/lib/queries";
+import { getCategories, getCertifications, getProductBySlug, getSiteSettings } from "@/lib/queries";
 
-export const metadata: Metadata = {
-  title: QUOTE.metaTitle,
-  description: QUOTE.metaDescription,
-  alternates: { canonical: "/quote" },
-};
+export async function generateMetadata({
+  searchParams,
+}: {
+  searchParams: Promise<{ type?: string }>;
+}): Promise<Metadata> {
+  const { type } = await searchParams;
+  const isSample = type === "sample";
+  return {
+    title: isSample ? QUOTE.sampleMetaTitle : QUOTE.metaTitle,
+    description: isSample ? QUOTE.sampleMetaDescription : QUOTE.metaDescription,
+    alternates: { canonical: "/quote" },
+  };
+}
 
-export default async function QuotePage() {
-  const [categories, certifications, settings] = await Promise.all([getCategories(), getCertifications(), getSiteSettings()]);
+export default async function QuotePage({
+  searchParams,
+}: {
+  searchParams: Promise<{ type?: string; product?: string }>;
+}) {
+  const { type, product: productSlug } = await searchParams;
+  const isSample = type === "sample";
+
+  const [categories, certifications, settings, product] = await Promise.all([
+    getCategories(),
+    getCertifications(),
+    getSiteSettings(),
+    productSlug ? getProductBySlug(productSlug) : Promise.resolve(null),
+  ]);
+
+  const defaultProductInterest = product?.category?.name;
+  const defaultProductNote = product ? product.name : undefined;
 
   return (
     <main>
       <section className="mx-auto max-w-[1180px] px-[18px] py-11 sm:px-8 lg:pb-[90px]">
-        <Breadcrumb items={[{ name: "Request a Quote" }]} />
+        <Breadcrumb items={[{ name: isSample ? "Request a Sample" : "Request a Quote" }]} />
         <div className="grid grid-cols-1 items-start gap-10 lg:grid-cols-[1.5fr_1fr]">
           <div className="rounded-[24px] border border-border-3 bg-white p-7 shadow-[0_24px_60px_-40px_rgba(31,41,55,0.35)] sm:p-11">
-            <h1 className="font-heading text-[28px] font-extrabold tracking-tight sm:text-[34px]">{QUOTE.title}</h1>
-            <p className="mt-2.5 text-[15.5px] text-muted-2">{QUOTE.lead}</p>
-            <QuoteForm categories={categories} />
+            <h1 className="font-heading text-[28px] font-extrabold tracking-tight sm:text-[34px]">
+              {isSample ? QUOTE.sampleTitle : QUOTE.title}
+            </h1>
+            <p className="mt-2.5 text-[15.5px] text-muted-2">{isSample ? QUOTE.sampleLead : QUOTE.lead}</p>
+            <QuoteForm
+              categories={categories}
+              type={isSample ? "sample" : "quote"}
+              defaultProductInterest={defaultProductInterest}
+              defaultProductNote={defaultProductNote}
+            />
           </div>
 
           <aside className="lg:sticky lg:top-[100px]">
